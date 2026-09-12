@@ -2,22 +2,24 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ورقة خلاصة علمية شاملة: نازلة الخلايا الجذعية في الفقه الإسلامي</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>ورقة خلاصة علمية شاملة ومركزة: نازلة الخلايا الجذعية</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts: Cairo & Amiri -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
-            darkMode: 'class',
             theme: {
                 extend: {
                     fontFamily: {
                         cairo: ['Cairo', 'sans-serif'],
                         amiri: ['Amiri', 'serif'],
+                    },
+                    screens: {
+                        'xs': '380px',
                     }
                 }
             }
@@ -27,27 +29,30 @@
         body {
             font-family: 'Cairo', sans-serif;
             background-color: #f8fafc;
-            color: #1e293b;
-            scroll-behavior: smooth;
+            color: #0f172a;
+            -webkit-tap-highlight-color: transparent;
+            padding-bottom: 75px; /* مساحة للقائمة السفلية بالجوال */
         }
         .quran-verse {
             font-family: 'Amiri', serif;
+            font-size: 1.15em;
         }
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
+        /* إخفاء شريط التمرير الأفقي مع بقاء التمرير سلساً */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
         }
-        ::-webkit-scrollbar-track {
-            background: #f1f5f9;
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
-        ::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8;
+        /* تحسين استجابة اللمس على الجوال */
+        button, a {
+            touch-action: manipulation;
         }
         @media print {
+            body {
+                padding-bottom: 0 !important;
+            }
             .no-print {
                 display: none !important;
             }
@@ -57,303 +62,266 @@
         }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col selection:bg-emerald-100 selection:text-emerald-900">
+<body class="bg-slate-50 text-slate-900 antialiased min-h-screen selection:bg-emerald-200 selection:text-emerald-950">
 
-    <!-- Header & Hero Section -->
-    <header class="bg-gradient-to-l from-emerald-950 via-teal-900 to-slate-900 text-white shadow-xl relative overflow-hidden border-b border-emerald-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 relative z-10">
-            
-            <!-- Top Utility Bar -->
-            <div class="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-emerald-700/40 mb-6">
-                <div class="flex items-center space-x-reverse space-x-2">
-                    <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
-                        خلاصة فقهية مقارنة محكمة
+    <!-- Header: شريط العنوان العلوي المحسن للجوال والشاشات -->
+    <header class="bg-gradient-to-br from-emerald-950 via-teal-950 to-slate-950 text-white shadow-lg sticky top-0 z-30 border-b border-emerald-800/60">
+        <div class="max-w-5xl mx-auto px-4 py-3 sm:py-5">
+            <div class="flex items-center justify-between gap-2">
+                <!-- شعار وعنوان مقتضب للجوال -->
+                <div class="flex items-center space-x-reverse space-x-2.5">
+                    <span class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-emerald-600/90 border border-emerald-400/40 flex items-center justify-center text-white shadow-inner font-bold text-sm sm:text-base">
+                        🔬
                     </span>
-                    <span class="text-xs text-emerald-200/80">المصادر [1-3]</span>
-                </div>
-                
-                <div class="flex items-center space-x-reverse space-x-3 no-print">
-                    <!-- Text Size Controller -->
-                    <div class="flex items-center bg-emerald-950/70 rounded-lg p-1 border border-emerald-700/50">
-                        <button onclick="changeFontSize(-1)" title="تصغير الخط" class="px-2.5 py-1 text-xs hover:bg-emerald-800 rounded transition">A-</button>
-                        <button onclick="changeFontSize(1)" title="تكبير الخط" class="px-2.5 py-1 text-xs hover:bg-emerald-800 rounded transition font-bold">A+</button>
+                    <div>
+                        <span class="inline-block text-[10px] sm:text-xs text-emerald-300 font-semibold tracking-wider">خلاصة فقهية مقارنة محكمة</span>
+                        <h1 class="text-sm sm:text-lg md:text-xl font-bold text-white line-clamp-1">
+                            نازلة «الخلايا الجذعية» في الفقه الإسلامي
+                        </h1>
                     </div>
-                    <!-- Print Button -->
-                    <button onclick="window.print()" class="inline-flex items-center px-3 py-1.5 rounded-lg text-xs bg-emerald-800/80 hover:bg-emerald-700 text-emerald-100 border border-emerald-600/50 transition shadow-sm">
-                        <svg class="w-4 h-4 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
-                        طباعة الصفحة
+                </div>
+
+                <!-- أدوات الخط والطباعة -->
+                <div class="flex items-center space-x-reverse space-x-1 sm:space-x-2 no-print">
+                    <button onclick="changeFontSize(-1)" title="تصغير النص" class="w-8 h-8 rounded-lg bg-emerald-900/80 border border-emerald-700/60 text-xs font-bold text-emerald-200 active:scale-95 transition flex items-center justify-center">
+                        A-
                     </button>
-                </div>
-            </div>
-
-            <!-- Main Title & Description -->
-            <div class="text-center max-w-4xl mx-auto">
-                <h1 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mb-4 leading-snug">
-                    نتائج وأحكام نازلة <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-teal-200 to-amber-200">«الخلايا الجذعية»</span>
-                </h1>
-                <p class="text-emerald-100/90 text-sm sm:text-base md:text-lg font-light leading-relaxed max-w-3xl mx-auto">
-                    ورقة خلاصة علمية شاملة ومركزة واستخلاص مسائلها الفقهية المقارنة من واقع الأبحاث المحكمة المرفوعة [1-3]
-                </p>
-
-                <!-- Quick Stats Badge Bar -->
-                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-8 max-w-3xl mx-auto">
-                    <div class="bg-emerald-950/60 backdrop-blur border border-emerald-700/50 rounded-xl p-3 text-center">
-                        <span class="block text-2xl font-bold text-emerald-300">1</span>
-                        <span class="text-xs text-emerald-200/90">توطئة وتصوير طبي</span>
-                    </div>
-                    <div class="bg-emerald-950/60 backdrop-blur border border-emerald-700/50 rounded-xl p-3 text-center">
-                        <span class="block text-2xl font-bold text-teal-300">9</span>
-                        <span class="text-xs text-emerald-200/90">مصادر استخراج وتطبيب</span>
-                    </div>
-                    <div class="bg-emerald-950/60 backdrop-blur border border-emerald-700/50 rounded-xl p-3 text-center">
-                        <span class="block text-2xl font-bold text-amber-300">4</span>
-                        <span class="text-xs text-emerald-200/90">أحكام معاملات وبنوك حفظ</span>
-                    </div>
-                    <div class="bg-emerald-950/60 backdrop-blur border border-emerald-700/50 rounded-xl p-3 text-center">
-                        <span class="block text-2xl font-bold text-emerald-200">16</span>
-                        <span class="text-xs text-emerald-200/90">مسألة بجدول النتائج</span>
-                    </div>
+                    <button onclick="changeFontSize(1)" title="تكبير النص" class="w-8 h-8 rounded-lg bg-emerald-900/80 border border-emerald-700/60 text-xs font-bold text-emerald-200 active:scale-95 transition flex items-center justify-center">
+                        A+
+                    </button>
+                    <button onclick="window.print()" title="طباعة الورقة" class="w-8 h-8 rounded-lg bg-emerald-800/80 border border-emerald-600/60 text-emerald-100 hidden xs:flex items-center justify-center active:scale-95 transition">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+                    </button>
                 </div>
             </div>
         </div>
 
-        <!-- Tab Navigation Bar -->
-        <div class="bg-emerald-950/90 backdrop-blur border-t border-emerald-800/80 no-print sticky top-0 z-40">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <nav class="flex space-x-reverse space-x-2 overflow-x-auto py-2.5 text-sm font-medium" aria-label="Tabs" id="mainTabs">
-                    <button onclick="switchTab('tab-intro')" id="btn-tab-intro" class="tab-btn px-4 py-2 rounded-xl whitespace-nowrap transition flex items-center text-white bg-emerald-700 shadow">
-                        <svg class="w-4 h-4 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
-                        1. التوطئة والتصوير الطبي
-                    </button>
-                    <button onclick="switchTab('tab-sources')" id="btn-tab-sources" class="tab-btn px-4 py-2 rounded-xl whitespace-nowrap transition flex items-center text-emerald-200 hover:text-white hover:bg-emerald-800/60">
-                        <svg class="w-4 h-4 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"></path></svg>
-                        2. مصادر استخراج الخلايا (9 مسائل)
-                    </button>
-                    <button onclick="switchTab('tab-transactions')" id="btn-tab-transactions" class="tab-btn px-4 py-2 rounded-xl whitespace-nowrap transition flex items-center text-emerald-200 hover:text-white hover:bg-emerald-800/60">
-                        <svg class="w-4 h-4 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                        3. بنوك الخلايا والتعاقد (4 مسائل)
-                    </button>
-                    <button onclick="switchTab('tab-summary')" id="btn-tab-summary" class="tab-btn px-4 py-2 rounded-xl whitespace-nowrap transition flex items-center text-emerald-200 hover:text-white hover:bg-emerald-800/60">
-                        <svg class="w-4 h-4 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                        4. الخلاصة وجدول النتائج الجازمة
-                    </button>
-                </nav>
+        <!-- شريط التبويبات الأفقي القابل للسحب بالإصبع (Touch Swipeable Pills) -->
+        <div class="bg-emerald-950/95 border-t border-emerald-800/50 no-print overflow-x-auto no-scrollbar py-2 px-3">
+            <div class="flex space-x-reverse space-x-2 min-w-max max-w-5xl mx-auto" id="topNavTabs">
+                <button onclick="switchTab('tab-intro')" id="btn-top-tab-intro" class="top-nav-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition flex items-center bg-emerald-600 text-white shadow">
+                    <span>1. التصوير الطبي</span>
+                </button>
+                <button onclick="switchTab('tab-sources')" id="btn-top-tab-sources" class="top-nav-btn px-3.5 py-1.5 rounded-full text-xs font-medium text-emerald-200 hover:text-white hover:bg-emerald-900/80 transition flex items-center">
+                    <span>2. مصادر الاستخراج (9 مسائل)</span>
+                </button>
+                <button onclick="switchTab('tab-transactions')" id="btn-top-tab-transactions" class="top-nav-btn px-3.5 py-1.5 rounded-full text-xs font-medium text-emerald-200 hover:text-white hover:bg-emerald-900/80 transition flex items-center">
+                    <span>3. بنوك الخلايا (4 مسائل)</span>
+                </button>
+                <button onclick="switchTab('tab-summary')" id="btn-top-tab-summary" class="top-nav-btn px-3.5 py-1.5 rounded-full text-xs font-medium text-emerald-200 hover:text-white hover:bg-emerald-900/80 transition flex items-center">
+                    <span>4. جدول النتائج (16 مسألة)</span>
+                </button>
             </div>
         </div>
     </header>
 
-    <!-- Global Search and Quick Actions Bar -->
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 no-print">
-        <div class="bg-white rounded-2xl p-4 shadow-sm border border-slate-200 flex flex-col md:flex-row items-center justify-between gap-4">
-            <!-- Search Box -->
-            <div class="relative w-full md:w-96">
-                <div class="absolute inset-y-0 right-0 pr-3.5 flex items-center pointer-events-none text-slate-400">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+    <!-- الترويسة العلمية والبحث السريع -->
+    <section class="max-w-5xl mx-auto px-4 pt-4 no-print">
+        <!-- كارت العنوان التوصيفي بحسب النص تماماً -->
+        <div class="bg-white rounded-2xl p-4 sm:p-5 shadow-sm border border-slate-200 mb-3">
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-medium">
+                هذه <strong class="text-emerald-900 font-bold">ورقة خلاصة علمية شاملة ومركزة</strong> لنتائج وأحكام نازلة «الخلايا الجذعية» واستخلاص مسائلا الفقهية المقارنة من واقع الأبحاث المحكمة المرفوعة [1-3].
+            </p>
+            
+            <!-- أرقام سريعة للأقسام مريحة للمشاهدة على الجوال -->
+            <div class="grid grid-cols-4 gap-2 mt-3 pt-3 border-t border-slate-100 text-center">
+                <div class="bg-slate-50 rounded-xl p-1.5 border border-slate-100">
+                    <div class="text-xs sm:text-sm font-bold text-emerald-700">1</div>
+                    <div class="text-[10px] text-slate-500">التصوير</div>
                 </div>
-                <input type="text" id="liveSearchInput" onkeyup="filterContent()" placeholder="ابحث في المسائل، الأحكام، أو القواعد الفقهية..." 
-                       class="w-full pr-10 pl-4 py-2 text-sm bg-slate-50 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition">
+                <div class="bg-slate-50 rounded-xl p-1.5 border border-slate-100">
+                    <div class="text-xs sm:text-sm font-bold text-teal-700">9</div>
+                    <div class="text-[10px] text-slate-500">المصادر</div>
+                </div>
+                <div class="bg-slate-50 rounded-xl p-1.5 border border-slate-100">
+                    <div class="text-xs sm:text-sm font-bold text-amber-700">4</div>
+                    <div class="text-[10px] text-slate-500">البنوك</div>
+                </div>
+                <div class="bg-slate-50 rounded-xl p-1.5 border border-slate-100">
+                    <div class="text-xs sm:text-sm font-bold text-indigo-700">16</div>
+                    <div class="text-[10px] text-slate-500">النتائج</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- صندوق البحث الذكي وفلاتر الأحكام المجهزة للجوال -->
+        <div class="bg-white rounded-2xl p-3 shadow-sm border border-slate-200 space-y-2.5">
+            <div class="relative">
+                <input type="text" id="searchInput" onkeyup="filterAll()" placeholder="ابحث في المسائل أو الأحكام أو التخريجات الفقهية..." 
+                       class="w-full text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-xl py-2.5 pr-9 pl-8 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition">
+                <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-slate-400 text-xs">
+                    🔍
+                </div>
+                <button onclick="clearSearch()" id="clearBtn" class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400 hover:text-slate-600 hidden text-xs">
+                    ✕
+                </button>
             </div>
 
-            <!-- Ruling Filter Badges -->
-            <div class="flex flex-wrap items-center gap-1.5 w-full md:w-auto justify-start md:justify-end text-xs">
-                <span class="text-slate-500 ml-1 font-medium">تصفية سريعة:</span>
-                <button onclick="setFilter('all')" class="filter-btn active px-3 py-1.5 rounded-lg bg-slate-800 text-white font-medium transition" data-filter="all">الكل</button>
-                <button onclick="setFilter('mubah')" class="filter-btn px-3 py-1.5 rounded-lg bg-emerald-100 text-emerald-800 hover:bg-emerald-200 font-medium transition border border-emerald-300" data-filter="mubah">مباح / جائز</button>
-                <button onclick="setFilter('shart')" class="filter-btn px-3 py-1.5 rounded-lg bg-amber-100 text-amber-800 hover:bg-amber-200 font-medium transition border border-amber-300" data-filter="shart">مباح بشرط / تفصيل</button>
-                <button onclick="setFilter('haram')" class="filter-btn px-3 py-1.5 rounded-lg bg-rose-100 text-rose-800 hover:bg-rose-200 font-medium transition border border-rose-300" data-filter="haram">محظور / محرم</button>
+            <!-- أزرار التصفية السريعة المتوافقة مع لمس شاشة الجوال -->
+            <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar text-xs pt-1 pb-0.5">
+                <button onclick="setFilter('all')" class="filter-badge active px-3 py-1.5 rounded-lg font-bold bg-slate-800 text-white whitespace-nowrap" data-filter="all">الكل</button>
+                <button onclick="setFilter('mubah')" class="filter-badge px-3 py-1.5 rounded-lg font-medium bg-emerald-50 text-emerald-800 border border-emerald-200 whitespace-nowrap" data-filter="mubah">مباح / جائز</button>
+                <button onclick="setFilter('shart')" class="filter-badge px-3 py-1.5 rounded-lg font-medium bg-amber-50 text-amber-800 border border-amber-200 whitespace-nowrap" data-filter="shart">مباح بشرط / تفصيل</button>
+                <button onclick="setFilter('haram')" class="filter-badge px-3 py-1.5 rounded-lg font-medium bg-rose-50 text-rose-800 border border-rose-200 whitespace-nowrap" data-filter="haram">محظور / محرم</button>
             </div>
         </div>
     </section>
 
-    <!-- Main Content Area -->
-    <main id="contentContainer" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow">
+    <!-- منطقة المحتوى الرئيسية القابلة للتكبير بحجم الخط -->
+    <main id="mainDynamicArea" class="max-w-5xl mx-auto px-4 py-4 text-sm leading-relaxed flex-grow">
 
-        <!-- ==================== TAB 1: التوطئة والتصوير الطبي ==================== -->
-        <section id="tab-intro" class="tab-content transition-all duration-300">
-            <div class="bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-slate-200 relative overflow-hidden mb-8">
-                <div class="relative z-10">
-                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold mb-4">
-                        <span>المبحث الأول</span>
-                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                        <span>مدخل علمي تمهيدي</span>
-                    </div>
-
-                    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 mb-6 flex items-center">
-                        <span class="w-8 h-8 rounded-lg bg-emerald-700 text-white inline-flex items-center justify-center text-sm ml-3 font-mono">1</span>
-                        توطئة مقتضبة: التصوير الطبي للخلية الجذعية
+        <!-- ==================== التبويب 1: التصوير الطبي ==================== -->
+        <section id="tab-intro" class="tab-content transition-opacity duration-200">
+            <div class="bg-white rounded-2xl p-4 sm:p-6 shadow-sm border border-slate-200 space-y-4">
+                <div class="flex items-center gap-2 border-b border-slate-100 pb-3">
+                    <span class="w-7 h-7 rounded-lg bg-emerald-700 text-white flex items-center justify-center font-bold text-xs">1</span>
+                    <h2 class="text-base sm:text-lg font-bold text-slate-900">
+                        1. توطئة مقتضبة: التصوير الطبي للخلية الجذعية
                     </h2>
+                </div>
 
-                    <!-- Main Scientific Definition Card -->
-                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
-                        <div class="lg:col-span-2 bg-gradient-to-br from-slate-50 to-emerald-50/40 p-6 rounded-2xl border border-slate-200">
-                            <h3 class="text-base font-bold text-emerald-950 flex items-center mb-3">
-                                <svg class="w-5 h-5 text-emerald-600 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                ماهية الخلية الجذعية وميزتها
-                            </h3>
-                            <p class="text-slate-700 leading-relaxed text-sm sm:text-base mb-4">
-                                الخلايا الجذعية هي خلايا بدائية أولية غير متخصصة وغير مكتملة الانقسام [4]، تتميز بخصائص التجدد الذاتي والقدرة العالية على الانقسام والتطور والتمايز إلى أطياف واسعة من الخلايا الناضجة والمتخصصة في الجسم (كخلايا العظام، الأعصاب، والدم) [4, 5].
-                            </p>
-                            <p class="text-slate-700 leading-relaxed text-sm sm:text-base">
-                                وتختلف عن خلايا الجسد العادية (كالجلد أو الكبد) لكون الخلايا العادية متخصصة نهائياً ومحدودة الانقسام والوظيفة، بينما تُعد الخلايا الجذعية اللبنات الأساسية الأولى التي تتكون منها الأنسجة والأعضاء [4, 5].
+                <!-- نص المادة كاملاً دون أي حذف أو تصرف -->
+                <div class="bg-emerald-50/50 rounded-2xl p-4 border border-emerald-100 space-y-3">
+                    <div class="flex items-start gap-2">
+                        <span class="text-emerald-700 text-base mt-0.5">🔹</span>
+                        <div>
+                            <span class="font-bold text-emerald-950 block mb-1">ماهية الخلية الجذعية وميزتها:</span>
+                            <p class="text-slate-700 leading-relaxed text-xs sm:text-sm">
+                                الخلايا الجذعية هي خلايا بدائية أولية غير متخصصة وغير مكتملة الانقسام [4]، تتميز بخصائص التجدد الذاتي والقدرة العالية على الانقسام والتطور والتمايز إلى أطياف واسعة من الخلايا الناضجة والمتخصصة في الجسم (كخلايا العظام، الأعصاب، والدم) [4, 5]. وتختلف عن خلايا الجسد العادية (كالجلد أو الكبد) لكون الخلايا العادية متخصصة نهائياً ومحدودة الانقسام والوظيفة، بينما تُعد الخلايا الجذعية اللبنات الأساسية الأولى التي تتكون منها الأنسجة والأعضاء [4, 5].
                             </p>
                         </div>
+                    </div>
+                </div>
 
-                        <!-- Visual Comparison Mini-Card -->
-                        <div class="bg-white p-5 rounded-2xl border border-emerald-100 shadow-sm space-y-4">
-                            <h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider">مفارقة التصوير الطبي</h4>
-                            
-                            <div class="p-3.5 bg-emerald-50/70 rounded-xl border border-emerald-200/70">
-                                <div class="font-bold text-emerald-900 text-sm mb-1 flex items-center">
-                                    <span class="w-2 h-2 rounded-full bg-emerald-500 ml-2"></span>
-                                    الخلية الجذعية (اللبنة الأولى)
-                                </div>
-                                <p class="text-xs text-emerald-800 leading-normal">
-                                    بدائية، غير متخصصة، غير مكتملة الانقسام، قدرة فائقة على التجدد والتمايز لأي نسيج.
-                                </p>
-                            </div>
-
-                            <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200">
-                                <div class="font-bold text-slate-700 text-sm mb-1 flex items-center">
-                                    <span class="w-2 h-2 rounded-full bg-slate-400 ml-2"></span>
-                                    خلايا الجسد العادية (كالجلد والكبد)
-                                </div>
-                                <p class="text-xs text-slate-600 leading-normal">
-                                    متخصصة نهائياً، محدودة الانقسام، ذات وظيفة عضوية ثابتة ومحددة.
-                                </p>
-                            </div>
+                <!-- بطاقة توضيحية بصرية لتسهيل الاستيعاب على الجوال للمبتدئ والمتقدم -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                    <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200">
+                        <div class="font-bold text-emerald-800 text-xs mb-1 flex items-center">
+                            <span class="w-2 h-2 rounded-full bg-emerald-500 ml-1.5"></span>
+                            الخلية الجذعية (اللبنة الأولى)
                         </div>
+                        <p class="text-[11px] sm:text-xs text-slate-600 leading-normal">
+                            بدائية، غير متخصصة، غير مكتملة الانقسام، تتمايز لأنسجة متعددة كالعظام والأعصاب والدم.
+                        </p>
                     </div>
 
-                    <!-- Guidance notice -->
-                    <div class="mt-8 pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-                        <div class="flex items-center">
-                            <svg class="w-4 h-4 text-emerald-600 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                            فهم هذا التمييز الطبي هو مناط تخريج الأحكام الفقهية على مصادر الاستخراج المختلفة.
+                    <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200">
+                        <div class="font-bold text-slate-700 text-xs mb-1 flex items-center">
+                            <span class="w-2 h-2 rounded-full bg-slate-400 ml-1.5"></span>
+                            خلايا الجسد العادية (كالجلد والكبد)
                         </div>
-                        <button onclick="switchTab('tab-sources')" class="text-emerald-700 font-bold hover:underline inline-flex items-center">
-                            الانتقال إلى تفصيل مصادر الاستخراج (9 مسائل) &larr;
-                        </button>
+                        <p class="text-[11px] sm:text-xs text-slate-600 leading-normal">
+                            متخصصة نهائياً، ذات انقسام ووظيفة عضوية محددة وثابتة.
+                        </p>
                     </div>
+                </div>
+
+                <!-- زر الانتقال السريع التالي -->
+                <div class="pt-3 text-left">
+                    <button onclick="switchTab('tab-sources')" class="inline-flex items-center text-xs font-bold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 px-3.5 py-2 rounded-xl transition">
+                        الانتقال إلى مصادر الاستخراج (9 مسائل) &larr;
+                    </button>
                 </div>
             </div>
         </section>
 
-        <!-- ==================== TAB 2: الأحكام الفقهية التفصيلية بحسب مصادر الاستخراج ==================== -->
-        <section id="tab-sources" class="tab-content hidden transition-all duration-300">
-            <div class="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                <div>
-                    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center">
-                        <span class="w-8 h-8 rounded-lg bg-teal-700 text-white inline-flex items-center justify-center text-sm ml-3 font-mono">2</span>
-                        الأحكام الفقهية التفصيلية بحسب مصادر استخراج الخلايا
-                    </h2>
-                    <p class="text-xs sm:text-sm text-slate-500 mt-1">
-                        دراسة فقهية مقارنة لـ 9 مصادر طبية مع أدلتها وتخريجاتها وضوابطها الشرعية.
-                    </p>
-                </div>
-                <div class="text-xs text-slate-400 font-mono">
-                    المسائل: 9 | المصادر: [6-71]
-                </div>
+        <!-- ==================== التبويب 2: مصادر الاستخراج (9 مسائل) ==================== -->
+        <section id="tab-sources" class="tab-content hidden transition-opacity duration-200">
+            <div class="flex items-center justify-between mb-3 px-1">
+                <h2 class="text-sm sm:text-base font-bold text-slate-900 flex items-center gap-1.5">
+                    <span class="w-6 h-6 rounded-lg bg-teal-700 text-white inline-flex items-center justify-center text-xs font-mono">2</span>
+                    الأحكام الفقهية التفصيلية بحسب مصادر استخراج الخلايا
+                </h2>
+                <span class="text-[10px] sm:text-xs text-slate-500 font-mono bg-slate-100 px-2 py-0.5 rounded-md">9 مسائل</span>
             </div>
 
-            <!-- Issues Grid Container -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6" id="sourcesGrid">
+            <!-- شبكة البطاقات المهيأة للجوال -->
+            <div class="space-y-3 sm:space-y-4" id="cardsSourcesContainer">
 
-                <!-- 1. اللقائح الفائضة -->
-                <article class="issue-card bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition flex flex-col" data-category="shart" data-keywords="اللقائح الفائضة أطفال الأنابيب الضرورات تبيح المحظورات المشقة تجلب التيسير ما أبيح للضرورة يقدر بقدرها الضرر يزال">
-                    <div class="flex items-start justify-between gap-3 mb-3">
-                        <h3 class="text-base sm:text-lg font-bold text-slate-900 flex items-center">
-                            <span class="w-6 h-6 rounded-md bg-slate-100 text-slate-700 inline-flex items-center justify-center text-xs font-mono ml-2">1</span>
+                <!-- 1. اللقائح الفائضة (أطفال الأنابيب) -->
+                <article class="data-item bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-sm" data-category="shart" data-search="اللقائح الفائضة أطفال الأنابيب الجواز الشرعي المشروط الضرورات تبيح المحظورات المشقة تجلب التيسير ما أبيح للضرورة يقدر بقدرها الضرر يزال">
+                    <div class="flex items-start justify-between gap-2 pb-2.5 border-b border-slate-100 mb-3">
+                        <h3 class="text-xs sm:text-sm font-bold text-slate-900 flex items-center">
+                            <span class="w-5 h-5 rounded-full bg-slate-100 text-slate-700 text-[11px] font-mono inline-flex items-center justify-center ml-1.5">1</span>
                             اللقائح الفائضة (أطفال الأنابيب)
                         </h3>
-                        <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800 border border-amber-300 whitespace-nowrap">
+                        <span class="px-2 py-0.5 rounded-full text-[10px] sm:text-xs font-bold bg-amber-100 text-amber-800 border border-amber-300 whitespace-nowrap">
                             الجواز الشرعي المشرُوط
                         </span>
                     </div>
-                    
-                    <div class="space-y-3.5 text-sm flex-grow">
-                        <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
-                            <span class="font-bold text-teal-800 text-xs block mb-1">📌 المسألة:</span>
+                    <div class="space-y-2.5 text-xs sm:text-sm">
+                        <div>
+                            <span class="font-bold text-teal-900 text-xs block mb-0.5">📌 المسألة:</span>
                             <p class="text-slate-700">حكم استخراج الخلايا الجذعية من البويضات الملقحة الفائضة عن الحاجة في عمليات التلقيح الصناعي، وضابط تلفها أو إبقائها حية [6-10].</p>
                         </div>
-
-                        <div class="bg-amber-50/70 p-3 rounded-xl border border-amber-200/60">
-                            <span class="font-bold text-amber-900 text-xs block mb-1">⚖️ الحكم الشرعي الراجح:</span>
-                            <p class="text-amber-950 font-semibold">الجواز الشرعي المشرُوط بتعذّر وجود مصدر آخر أقل مفسدة، مع وجوب الاقتصار على أخذ خلية واحدة في مرحلة الثماني خلايا دون إتلاف بقية اللقيحة أو تعريض دورة حياتها للهلاك [8, 10-13].</p>
+                        <div class="bg-amber-50/80 p-2.5 rounded-xl border border-amber-200/70">
+                            <span class="font-bold text-amber-950 text-xs block mb-0.5">⚖️ الحكم الشرعي الراجح:</span>
+                            <p class="text-amber-950 font-bold">الجواز الشرعي المشرُوط بتعذّر وجود مصدر آخر أقل مفسدة، مع وجوب الاقتصار على أخذ خلية واحدة في مرحلة الثماني خلايا دون إتلاف بقية اللقيحة أو تعريض دورة حياتها للهلاك [8, 10-13].</p>
                         </div>
-
-                        <div>
-                            <span class="font-bold text-indigo-900 text-xs block mb-1">📖 التخريج الفقهي والعلة:</span>
-                            <p class="text-slate-600 text-xs leading-relaxed">
+                        <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200">
+                            <span class="font-bold text-indigo-950 text-xs block mb-0.5">📖 التخريج الفقهي والعلة:</span>
+                            <p class="text-slate-600 leading-relaxed text-[11px] sm:text-xs">
                                 يُخرَّج القول بالجواز عند الضرورة على قاعدة <strong class="text-slate-800">«الضرورات تبيح المحظورات»</strong> وقاعدة <strong class="text-slate-800">«المشقة تجلب التيسير»</strong> دفعاً للهلاك عن المرضى وتفادياً لإتلاف اللقائح هدرًا [14, 15]؛ بينما يُوجَّه اشتراط أخذ خلية واحدة إعمالاً لقاعدة <strong class="text-slate-800">«ما أُبيح للضرورة يُقدَّر بقدرها»</strong> وقاعدة <strong class="text-slate-800">«الضرر يُزال»</strong> حفاظاً على أصل الحياة الكامنة في اللقيحة [8, 10, 12-14].
                             </p>
-                            <div class="mt-2 p-2.5 bg-slate-100 rounded-lg text-xs text-slate-600 border border-slate-200">
-                                <span class="font-semibold text-slate-700">توجيه رأي التحريم المطلق:</span> يُخرّج على أن اللقيحة أصل الإنسان وتلفها إزهاق لحياة أصلية قياساً على تحريم كسر بيض الصيد للمحرم [16, 17].
+                            <div class="mt-2 pt-2 border-t border-slate-200/80 text-[10px] sm:text-[11px] text-slate-500">
+                                <strong>(توجيه رأي التحريم المطلق:</strong> يُخرّج على أن اللقيحة أصل الإنسان وتلفها إزهاق لحياة أصلية قياساً على تحريم كسر بيض الصيد للمحرم [16, 17])*.
                             </div>
                         </div>
                     </div>
                 </article>
 
                 <!-- 2. الأجنة المجهضة تلقائياً وعمدياً -->
-                <article class="issue-card bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition flex flex-col" data-category="shart" data-keywords="الأجنة المجهضة تلقائيا وعمديا السقط التلقائي الإجهاض لعذر القتل العدوان المتاجرة الضرورة لا تزيل الضرر بمثله">
-                    <div class="flex items-start justify-between gap-3 mb-3">
-                        <h3 class="text-base sm:text-lg font-bold text-slate-900 flex items-center">
-                            <span class="w-6 h-6 rounded-md bg-slate-100 text-slate-700 inline-flex items-center justify-center text-xs font-mono ml-2">2</span>
+                <article class="data-item bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-sm" data-category="shart" data-search="الأجنة المجهضة تلقائيا وعمديا السقط التلقائي الإجهاض لعذر شرعي القتل العدوان المتاجرة الضرورة لا تزيل الضرر بمثله">
+                    <div class="flex items-start justify-between gap-2 pb-2.5 border-b border-slate-100 mb-3">
+                        <h3 class="text-xs sm:text-sm font-bold text-slate-900 flex items-center">
+                            <span class="w-5 h-5 rounded-full bg-slate-100 text-slate-700 text-[11px] font-mono inline-flex items-center justify-center ml-1.5">2</span>
                             الأجنة المجهضة تلقائياً وعمدياً
                         </h3>
-                        <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800 border border-amber-300 whitespace-nowrap">
+                        <span class="px-2 py-0.5 rounded-full text-[10px] sm:text-xs font-bold bg-amber-100 text-amber-800 border border-amber-300 whitespace-nowrap">
                             تفصيل: جواز بشرط / تحريم
                         </span>
                     </div>
-                    
-                    <div class="space-y-3.5 text-sm flex-grow">
-                        <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
-                            <span class="font-bold text-teal-800 text-xs block mb-1">📌 المسألة:</span>
+                    <div class="space-y-2.5 text-xs sm:text-sm">
+                        <div>
+                            <span class="font-bold text-teal-900 text-xs block mb-0.5">📌 المسألة:</span>
                             <p class="text-slate-700">حكم الاستفادة من خلايا الأجنة المجهضة تلقائياً أو نتيجة إجهاض متعمد [18-20].</p>
                         </div>
-
-                        <div class="bg-emerald-50/70 p-3 rounded-xl border border-emerald-200/60">
-                            <span class="font-bold text-emerald-900 text-xs block mb-1">⚖️ الحكم الشرعي الراجح:</span>
-                            <p class="text-emerald-950 font-semibold">الجواز في السقط التلقائي والإجهاض لعذر شرعي (كإنقاذ حياة الأم)، والتحريم المطلق في الإجهاض العمدي لغير عذر شرعي [20-27].</p>
+                        <div class="bg-emerald-50/80 p-2.5 rounded-xl border border-emerald-200/70">
+                            <span class="font-bold text-emerald-950 text-xs block mb-0.5">⚖️ الحكم الشرعي الراجح:</span>
+                            <p class="text-emerald-950 font-bold">الجواز في السقط التلقائي والإجهاض لعذر شرعي (كإنقاذ حياة الأم)، والتحريم المطلق في الإجهاض العمدي لغير عذر شرعي [20-27].</p>
                         </div>
-
-                        <div>
-                            <span class="font-bold text-indigo-900 text-xs block mb-1">📖 التخريج الفقهي والعلة:</span>
-                            <p class="text-slate-600 text-xs leading-relaxed mb-2">
-                                يُخرَّج جواز السقط التلقائي والإجهاض المأذون فيه على أنه انتفاع بميت موتاً طبيعياً دون عدوان وبإذن الوالدين [20, 21, 24].
-                            </p>
-                            <p class="text-slate-600 text-xs leading-relaxed">
-                                بينما يُعلل تحريم الإجهاض العمدي لغير عذر بـ <strong class="text-slate-800">«حرمة القتل والعدوان على الجنين، وسداً لذرائع المتاجرة بالأجنة وأجرتها»</strong>، ولأن <strong class="text-slate-800">«الضرورة لا تُزيل الضرر بمثله، فلا يجوز إحياء نفس بإهلاك نفس أخرى»</strong> [22, 23, 28].
+                        <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200">
+                            <span class="font-bold text-indigo-950 text-xs block mb-0.5">📖 التخريج الفقهي والعلة:</span>
+                            <p class="text-slate-600 leading-relaxed text-[11px] sm:text-xs">
+                                يُخرَّج جواز السقط التلقائي والإجهاض المأذون فيه على أنه انتفاع بميت موتاً طبيعياً دون عدوان وبإذن الوالدين [20, 21, 24]؛ بينما يُعلل تحريم الإجهاض العمدي لغير عذر بـ <strong class="text-slate-800">«حرمة القتل والعدوان على الجنين، وسداً لذرائع المتاجرة بالأجنة وأجرتها»</strong>، ولأن <strong class="text-slate-800">«الضرورة لا تُزيل الضرر بمثله، فلا يجوز إحياء نفس بإهلاك نفس أخرى»</strong> [22, 23, 28].
                             </p>
                         </div>
                     </div>
                 </article>
 
                 <!-- 3. الأجنة المشوهة خلقياً -->
-                <article class="issue-card bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition flex flex-col" data-category="shart" data-keywords="الأجنة المشوهة خلقيا 120 يوما نفخ الروح عذر شرعي تشوه خطير">
-                    <div class="flex items-start justify-between gap-3 mb-3">
-                        <h3 class="text-base sm:text-lg font-bold text-slate-900 flex items-center">
-                            <span class="w-6 h-6 rounded-md bg-slate-100 text-slate-700 inline-flex items-center justify-center text-xs font-mono ml-2">3</span>
+                <article class="data-item bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-sm" data-category="shart" data-search="الأجنة المشوهة خلقيا 120 يوما نفخ الروح عذر شرعي نفس معصومة حديث ابن مسعود">
+                    <div class="flex items-start justify-between gap-2 pb-2.5 border-b border-slate-100 mb-3">
+                        <h3 class="text-xs sm:text-sm font-bold text-slate-900 flex items-center">
+                            <span class="w-5 h-5 rounded-full bg-slate-100 text-slate-700 text-[11px] font-mono inline-flex items-center justify-center ml-1.5">3</span>
                             الأجنة المشوهة خلقياً
                         </h3>
-                        <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800 border border-amber-300 whitespace-nowrap">
+                        <span class="px-2 py-0.5 rounded-full text-[10px] sm:text-xs font-bold bg-amber-100 text-amber-800 border border-amber-300 whitespace-nowrap">
                             جواز قبل 120 يوماً / تحريم بعده
                         </span>
                     </div>
-                    
-                    <div class="space-y-3.5 text-sm flex-grow">
-                        <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
-                            <span class="font-bold text-teal-800 text-xs block mb-1">📌 المسألة:</span>
+                    <div class="space-y-2.5 text-xs sm:text-sm">
+                        <div>
+                            <span class="font-bold text-teal-900 text-xs block mb-0.5">📌 المسألة:</span>
                             <p class="text-slate-700">استخراج الخلايا الجذعية من الأجنة المشوهة خلقياً قبل 120 يوماً وبعدها [22, 23, 29, 30].</p>
                         </div>
-
-                        <div class="bg-amber-50/70 p-3 rounded-xl border border-amber-200/60">
-                            <span class="font-bold text-amber-900 text-xs block mb-1">⚖️ الحكم الشرعي الراجح:</span>
-                            <p class="text-amber-950 font-semibold">الجواز قبل نفخ الروح (120 يوماً) إذا كان التشوه خطيراً وغير قابل للشفاء وتقرر إسقاطه لعذر شرعي، والتحريم المطلق بعد 120 يوماً إلا إذا هدد استمرار الحمل حياة الأم قطعاً [22-25, 29-31].</p>
+                        <div class="bg-amber-50/80 p-2.5 rounded-xl border border-amber-200/70">
+                            <span class="font-bold text-amber-950 text-xs block mb-0.5">⚖️ الحكم الشرعي الراجح:</span>
+                            <p class="text-amber-950 font-bold">الجواز قبل نفخ الروح (120 يوماً) إذا كان التشوه خطيراً وغير قابل للشفاء وتقرر إسقاطه لعذر شرعي، والتحريم المطلق بعد 120 يوماً إلا إذا هدد استمرار الحمل حياة الأم قطعاً [22-25, 29-31].</p>
                         </div>
-
-                        <div>
-                            <span class="font-bold text-indigo-900 text-xs block mb-1">📖 التخريج الفقهي والعلة:</span>
-                            <p class="text-slate-600 text-xs leading-relaxed">
+                        <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200">
+                            <span class="font-bold text-indigo-950 text-xs block mb-0.5">📖 التخريج الفقهي والعلة:</span>
+                            <p class="text-slate-600 leading-relaxed text-[11px] sm:text-xs">
                                 لأن نفخ الروح بعد 120 يوماً يجعل الجنين نفساً معصومة بحسب حديث ابن مسعود المتفق عليه، فلا يجوز قتلها أو استخراج خلاياها إن أدى لإهلاكها [29-31]؛ بينما يُترخص قبل 120 يوماً لكونه مضغة لم تحلها الروح الإنسانية الكاملة إذا تحقق العذر الشرعي المبيح للإسقاط [24, 30].
                             </p>
                         </div>
@@ -361,98 +329,86 @@
                 </article>
 
                 <!-- 4. التلقيح العمدي لغرض إنتاج الخلايا فقط -->
-                <article class="issue-card bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition flex flex-col" data-category="haram" data-keywords="التلقيح العمدي لغرض إنتاج الخلايا فقط متبرعين أجنبيين اختلاط الأنساب بطلان التبرع بالنطاف الزوجين ابتذال الجنين">
-                    <div class="flex items-start justify-between gap-3 mb-3">
-                        <h3 class="text-base sm:text-lg font-bold text-slate-900 flex items-center">
-                            <span class="w-6 h-6 rounded-md bg-slate-100 text-slate-700 inline-flex items-center justify-center text-xs font-mono ml-2">4</span>
+                <article class="data-item bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-sm" data-category="haram" data-search="التلقيح العمدي لغرض إنتاج الخلايا فقط متبرعين أجنبيين اختلاط الأنساب بطلان التبرع بالنطاف الزوجين ابتذال الجنين">
+                    <div class="flex items-start justify-between gap-2 pb-2.5 border-b border-slate-100 mb-3">
+                        <h3 class="text-xs sm:text-sm font-bold text-slate-900 flex items-center">
+                            <span class="w-5 h-5 rounded-full bg-slate-100 text-slate-700 text-[11px] font-mono inline-flex items-center justify-center ml-1.5">4</span>
                             التلقيح العمدي لغرض إنتاج الخلايا فقط
                         </h3>
-                        <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-rose-100 text-rose-800 border border-rose-300 whitespace-nowrap">
+                        <span class="px-2 py-0.5 rounded-full text-[10px] sm:text-xs font-bold bg-rose-100 text-rose-800 border border-rose-300 whitespace-nowrap">
                             محظور كأصل / استثناء ضيق
                         </span>
                     </div>
-                    
-                    <div class="space-y-3.5 text-sm flex-grow">
-                        <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
-                            <span class="font-bold text-teal-800 text-xs block mb-1">📌 المسألة:</span>
+                    <div class="space-y-2.5 text-xs sm:text-sm">
+                        <div>
+                            <span class="font-bold text-teal-900 text-xs block mb-0.5">📌 المسألة:</span>
                             <p class="text-slate-700">حكم تخليق أجنة بالتلقيح العمدي بغرض استخراج الخلايا الجذعية وتفكيكها، سواء بين زوجين أو بين متبرعين أجنبيين [12, 32, 33].</p>
                         </div>
-
-                        <div class="bg-rose-50/70 p-3 rounded-xl border border-rose-200/60">
-                            <span class="font-bold text-rose-900 text-xs block mb-1">⚖️ الحكم الشرعي الراجح:</span>
-                            <p class="text-rose-950 font-semibold">التحريم المطلق بين متبرعين أجنبيين، والتحريم كأصل بين الزوجين إلا عند الضرورة القصوى وتعين العلاج وعدم البديل [13, 32, 34, 35].</p>
+                        <div class="bg-rose-50/80 p-2.5 rounded-xl border border-rose-200/70">
+                            <span class="font-bold text-rose-950 text-xs block mb-0.5">⚖️ الحكم الشرعي الراجح:</span>
+                            <p class="text-rose-950 font-bold">التحريم المطلق بين متبرعين أجنبيين، والتحريم كأصل بين الزوجين إلا عند الضرورة القصوى وتعين العلاج وعدم البديل [13, 32, 34, 35].</p>
                         </div>
-
-                        <div>
-                            <span class="font-bold text-indigo-900 text-xs block mb-1">📖 التخريج الفقهي والعلة:</span>
-                            <p class="text-slate-600 text-xs leading-relaxed mb-2">
-                                يُعلل تحريمه بين الأجنبيين بـ <strong class="text-slate-800">«حرمة اختلاط الأنساب وبطلان التبرع بالنطاف والبويضات شرعاً»</strong> [13, 32].
-                            </p>
-                            <p class="text-slate-600 text-xs leading-relaxed">
-                                ويُعلل تحريمه بين الزوجين كأصل بـ <strong class="text-slate-800">«حرمة ابتذال النواة الأولى للإنسان وخلق الجنين لغرض إهلاكه وتفكيكه»</strong>، ويُستثنى في حالة الضرورة القصوى إن لم يوجد بديل طاهر كدم الحبل السري أو لبن الأم [34, 35].
+                        <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200">
+                            <span class="font-bold text-indigo-950 text-xs block mb-0.5">📖 التخريج الفقهي والعلة:</span>
+                            <p class="text-slate-600 leading-relaxed text-[11px] sm:text-xs">
+                                يُعلل تحريمه بين الأجنبيين بـ <strong class="text-slate-800">«حرمة اختلاط الأنساب وبطلان التبرع بالنطاف والبويضات شرعاً»</strong> [13, 32]؛ ويُعلل تحريمه بين الزوجين كأصل بـ <strong class="text-slate-800">«حرمة ابتذال النواة الأولى للإنسان وخلق الجنين لغرض إهلاكه وتفكيكه»</strong>، ويُستثنى في حالة الضرورة القصوى إن لم يوجد بديل طاهر كدم الحبل السري أو لبن الأم [34, 35].
                             </p>
                         </div>
                     </div>
                 </article>
 
-                <!-- 5. الاستنساخ العلاجي -->
-                <article class="issue-card bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition flex flex-col" data-category="haram" data-keywords="الاستنساخ العلاجي نقل الأنوية SCNT المجمع الفقهي الإسلامي ولقد كرمنا بني آدم إجهاض إجرامي تدمير الجنين">
-                    <div class="flex items-start justify-between gap-3 mb-3">
-                        <h3 class="text-base sm:text-lg font-bold text-slate-900 flex items-center">
-                            <span class="w-6 h-6 rounded-md bg-slate-100 text-slate-700 inline-flex items-center justify-center text-xs font-mono ml-2">5</span>
+                <!-- 5. الاستنساخ العلاجي (نقل الأنوية SCNT) -->
+                <article class="data-item bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-sm" data-category="haram" data-search="الاستنساخ العلاجي نقل الأنوية SCNT المجمع الفقهي الإسلامي ولقد كرمنا بني آدم إجهاض إجرامي تدمير الجنين">
+                    <div class="flex items-start justify-between gap-2 pb-2.5 border-b border-slate-100 mb-3">
+                        <h3 class="text-xs sm:text-sm font-bold text-slate-900 flex items-center">
+                            <span class="w-5 h-5 rounded-full bg-slate-100 text-slate-700 text-[11px] font-mono inline-flex items-center justify-center ml-1.5">5</span>
                             الاستنساخ العلاجي (نقل الأنوية SCNT)
                         </h3>
-                        <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-rose-100 text-rose-800 border border-rose-300 whitespace-nowrap">
+                        <span class="px-2 py-0.5 rounded-full text-[10px] sm:text-xs font-bold bg-rose-100 text-rose-800 border border-rose-300 whitespace-nowrap">
                             التحريم والمحظر الشرعي
                         </span>
                     </div>
-                    
-                    <div class="space-y-3.5 text-sm flex-grow">
-                        <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
-                            <span class="font-bold text-teal-800 text-xs block mb-1">📌 المسألة:</span>
+                    <div class="space-y-2.5 text-xs sm:text-sm">
+                        <div>
+                            <span class="font-bold text-teal-900 text-xs block mb-0.5">📌 المسألة:</span>
                             <p class="text-slate-700">حكم تخليق جنين بنقل نواة خلية جسدية إلى بويضة مفرغة النواة لتفكيكه واستخراج خلاياه [36-38].</p>
                         </div>
-
-                        <div class="bg-rose-50/70 p-3 rounded-xl border border-rose-200/60">
-                            <span class="font-bold text-rose-900 text-xs block mb-1">⚖️ الحكم الشرعي الراجح:</span>
-                            <p class="text-rose-950 font-semibold">التحريم والمحظر الشرعي (وفق القرارات الصادرة عن المجمع الفقهي الإسلامي التابع لرابطة العالم الإسلامي) [35, 38-40].</p>
+                        <div class="bg-rose-50/80 p-2.5 rounded-xl border border-rose-200/70">
+                            <span class="font-bold text-rose-950 text-xs block mb-0.5">⚖️ الحكم الشرعي الراجح:</span>
+                            <p class="text-rose-950 font-bold">التحريم والمحظر الشرعي (وفق القرارات الصادرة عن المجمع الفقهي الإسلامي التابع لرابطة العالم الإسلامي) [35, 38-40].</p>
                         </div>
-
-                        <div>
-                            <span class="font-bold text-indigo-900 text-xs block mb-1">📖 التخريج الفقهي والعلة:</span>
-                            <p class="text-slate-600 text-xs leading-relaxed">
-                                يُخرَّج على قوله تعالى: <span class="quran-verse text-slate-900 font-bold">﴿وَلَقَدْ كَرَّمْنَا بَنِي آدَمَ﴾</span>؛ لأن العملية تتضمن <strong class="text-slate-800">«تخليق كائن بشري مبدئي ثم تدميره وقتله عمدياً»</strong> وهو عين الإجهاض الإجرامي المنافي للكرامة الإنسانية، مع توفر البدائل الشرعية كالخلايا البالغة ودم الحبل السري [35, 39-42].
+                        <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200">
+                            <span class="font-bold text-indigo-950 text-xs block mb-0.5">📖 التخريج الفقهي والعلة:</span>
+                            <p class="text-slate-600 leading-relaxed text-[11px] sm:text-xs">
+                                يُخرَّج على قوله تعالى: <span class="quran-verse font-bold text-slate-900">﴿وَلَقَدْ كَرَّمْنَا بَنِي آدَمَ﴾</span>؛ لأن العملية تتضمن <strong class="text-slate-800">«تخليق كائن بشري مبدئي ثم تدميره وقتله عمدياً»</strong> وهو عين الإجهاض الإجرامي المنافي للكرامة الإنسانية، مع توفر البدائل الشرعية كالخلايا البالغة ودم الحبل السري [35, 39-42].
                             </p>
                         </div>
                     </div>
                 </article>
 
                 <!-- 6. دم الحبل السري والمشيمة -->
-                <article class="issue-card bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition flex flex-col" data-category="mubah" data-keywords="دم الحبل السري والمشيمة التداوي بالنجس أو الطاهر المستقذر فضلات تلقى هدرا إعمال الوسائل النافعة لإزالة الضرر">
-                    <div class="flex items-start justify-between gap-3 mb-3">
-                        <h3 class="text-base sm:text-lg font-bold text-slate-900 flex items-center">
-                            <span class="w-6 h-6 rounded-md bg-slate-100 text-slate-700 inline-flex items-center justify-center text-xs font-mono ml-2">6</span>
+                <article class="data-item bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-sm" data-category="mubah" data-search="دم الحبل السري والمشيمة الإباحة والجواز الشرعي المطلق التداوي بالنجس أو الطاهر المستقذر فضلات تلقى هدرا إزالة الضرر إذن الوالدين">
+                    <div class="flex items-start justify-between gap-2 pb-2.5 border-b border-slate-100 mb-3">
+                        <h3 class="text-xs sm:text-sm font-bold text-slate-900 flex items-center">
+                            <span class="w-5 h-5 rounded-full bg-slate-100 text-slate-700 text-[11px] font-mono inline-flex items-center justify-center ml-1.5">6</span>
                             دم الحبل السري والمشيمة
                         </h3>
-                        <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300 whitespace-nowrap">
+                        <span class="px-2 py-0.5 rounded-full text-[10px] sm:text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300 whitespace-nowrap">
                             الإباحة والجواز الشرعي المطلق
                         </span>
                     </div>
-                    
-                    <div class="space-y-3.5 text-sm flex-grow">
-                        <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
-                            <span class="font-bold text-teal-800 text-xs block mb-1">📌 المسألة:</span>
+                    <div class="space-y-2.5 text-xs sm:text-sm">
+                        <div>
+                            <span class="font-bold text-teal-900 text-xs block mb-0.5">📌 المسألة:</span>
                             <p class="text-slate-700">حكم التداوي بالخلايا الجذعية المأخوذة من دم الحبل السري والمشيمة بعد الولادة [43-45].</p>
                         </div>
-
-                        <div class="bg-emerald-50/70 p-3 rounded-xl border border-emerald-200/60">
-                            <span class="font-bold text-emerald-900 text-xs block mb-1">⚖️ الحكم الشرعي الراجح:</span>
-                            <p class="text-emerald-950 font-semibold">الإباحة والجواز الشرعي المطلق بشروطه الشرعية والطبية [27, 45-47].</p>
+                        <div class="bg-emerald-50/80 p-2.5 rounded-xl border border-emerald-200/70">
+                            <span class="font-bold text-emerald-950 text-xs block mb-0.5">⚖️ الحكم الشرعي الراجح:</span>
+                            <p class="text-emerald-950 font-bold">الإباحة والجواز الشرعي المطلق بشروطه الشرعية والطبية [27, 45-47].</p>
                         </div>
-
-                        <div>
-                            <span class="font-bold text-indigo-900 text-xs block mb-1">📖 التخريج الفقهي والعلة:</span>
-                            <p class="text-slate-600 text-xs leading-relaxed">
+                        <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200">
+                            <span class="font-bold text-indigo-950 text-xs block mb-0.5">📖 التخريج الفقهي والعلة:</span>
+                            <p class="text-slate-600 leading-relaxed text-[11px] sm:text-xs">
                                 يُخرَّج على <strong class="text-slate-800">«مسألة التداوي بالنجس أو الطاهر المستقذر عند الضرورة أو الحاجة المنزلة منزلتها»</strong> لدى جمهور الفقهاء (الحنفية والمالكية والشافعية والحنابلة)، ولأن المشيمة والحبل السري فضلات تُلقى هدرًا، فاستصلاحها للأغراض العلاجية أولى إعمالاً لقاعدة <strong class="text-slate-800">«إعمال الوسائل النافعة لإزالة الضرر دون إلحاق أذى بالأم أو الوليد وبإذن الوالدين»</strong> [27, 46-50].
                             </p>
                         </div>
@@ -460,101 +416,86 @@
                 </article>
 
                 <!-- 7. خلايا البالغين والأطفال -->
-                <article class="issue-card bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition flex flex-col" data-category="shart" data-keywords="خلايا البالغين والأطفال تكييف تصرف الولي تصرف الولي في حق القاصر منوط بالمصلحة المحضة التبرع بالخلايا للغير ضرر محض">
-                    <div class="flex items-start justify-between gap-3 mb-3">
-                        <h3 class="text-base sm:text-lg font-bold text-slate-900 flex items-center">
-                            <span class="w-6 h-6 rounded-md bg-slate-100 text-slate-700 inline-flex items-center justify-center text-xs font-mono ml-2">7</span>
+                <article class="data-item bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-sm" data-category="shart" data-search="خلايا البالغين والأطفال تصرف الولي في حق القاصر منوط بالمصلحة المحضة التبرع بالخلايا للغير ضرر محض التداوي الجائز">
+                    <div class="flex items-start justify-between gap-2 pb-2.5 border-b border-slate-100 mb-3">
+                        <h3 class="text-xs sm:text-sm font-bold text-slate-900 flex items-center">
+                            <span class="w-5 h-5 rounded-full bg-slate-100 text-slate-700 text-[11px] font-mono inline-flex items-center justify-center ml-1.5">7</span>
                             خلايا البالغين والأطفال
                         </h3>
-                        <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800 border border-amber-300 whitespace-nowrap">
+                        <span class="px-2 py-0.5 rounded-full text-[10px] sm:text-xs font-bold bg-amber-100 text-amber-800 border border-amber-300 whitespace-nowrap">
                             جواز للبالغ / تحريم للتبرع بالطفل
                         </span>
                     </div>
-                    
-                    <div class="space-y-3.5 text-sm flex-grow">
-                        <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
-                            <span class="font-bold text-teal-800 text-xs block mb-1">📌 المسألة:</span>
+                    <div class="space-y-2.5 text-xs sm:text-sm">
+                        <div>
+                            <span class="font-bold text-teal-900 text-xs block mb-0.5">📌 المسألة:</span>
                             <p class="text-slate-700">حكم أخذ الخلايا الجذعية من البالغين والأطفال لعلاج أنفسهم أو التبرع بها لغيرهم، وتكييف تصرف الولي [51-54].</p>
                         </div>
-
-                        <div class="bg-amber-50/70 p-3 rounded-xl border border-amber-200/60">
-                            <span class="font-bold text-amber-900 text-xs block mb-1">⚖️ الحكم الشرعي الراجح:</span>
-                            <p class="text-amber-950 font-semibold">الجواز المطلق للبالغ وللشخص لعلاج نفسه، والجواز من البالغ للتبرع لغيره بإذنه وبلا ضرر، والتحريم المطلق للتبرع بخلايا الطفل لغيره وبطلان إذن الولي في ذلك [27, 53-56].</p>
+                        <div class="bg-amber-50/80 p-2.5 rounded-xl border border-amber-200/70">
+                            <span class="font-bold text-amber-950 text-xs block mb-0.5">⚖️ الحكم الشرعي الراجح:</span>
+                            <p class="text-amber-950 font-bold">الجواز المطلق للبالغ وللشخص لعلاج نفسه، والجواز من البالغ للتبرع لغيره بإذنه وبلا ضرر، والتحريم المطلق للتبرع بخلايا الطفل لغيره وبطلان إذن الولي في ذلك [27, 53-56].</p>
                         </div>
-
-                        <div>
-                            <span class="font-bold text-indigo-900 text-xs block mb-1">📖 التخريج الفقهي والعلة:</span>
-                            <p class="text-slate-600 text-xs leading-relaxed mb-2">
-                                يُخرَّج علاج الشخص بنفسه على <strong class="text-slate-800">«مشروعية التداوي الجائز»</strong> [52, 53, 57]؛
-                            </p>
-                            <p class="text-slate-600 text-xs leading-relaxed">
-                                بينما يُعلل تحريم أخذ خلايا الطفل للتبرع بها لغيره وتلغى ولاية الولي فيها تخريجاً على القاعدة الكلية: <strong class="text-slate-800">«تصرف الولي في حق القاصر منوط بالمصلحة المحضة»</strong>، والتبرع بالخلايا لغيره ضرر محض على الصغير لا نفع فيه له، فلا يصح إذن الولي فيه إجماعاً [55, 58, 59].
+                        <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200">
+                            <span class="font-bold text-indigo-950 text-xs block mb-0.5">📖 التخريج الفقهي والعلة:</span>
+                            <p class="text-slate-600 leading-relaxed text-[11px] sm:text-xs">
+                                يُخرَّج علاج الشخص بنفسه على <strong class="text-slate-800">«مشروعية التداوي الجائز»</strong> [52, 53, 57]؛ بينما يُعلل تحريم أخذ خلايا الطفل للتبرع بها لغيره وتلغى ولاية الولي فيها تخريجاً على القاعدة الكلية: <strong class="text-slate-800">«تصرف الولي في حق القاصر منوط بالمصلحة المحضة»</strong>، والتبرع بالخلايا لغيره ضرر محض على الصغير لا نفع فيه له، فلا يصح إذن الولي فيه إجماعاً [55, 58, 59].
                             </p>
                         </div>
                     </div>
                 </article>
 
-                <!-- 8. الخلايا الجذعية في لبن الأمهات -->
-                <article class="issue-card bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition flex flex-col" data-category="mubah" data-keywords="لبن الأمهات حليب المرضعات الوجور الحولين ثبوت حرمة الرضاع والمحرمية إنبات اللحم وإنشاز العظم">
-                    <div class="flex items-start justify-between gap-3 mb-3">
-                        <h3 class="text-base sm:text-lg font-bold text-slate-900 flex items-center">
-                            <span class="w-6 h-6 rounded-md bg-slate-100 text-slate-700 inline-flex items-center justify-center text-xs font-mono ml-2">8</span>
+                <!-- 8. الخلايا الجذعية في لبن الأمهات (حليب المرضعات) -->
+                <article class="data-item bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-sm" data-category="mubah" data-search="الخلايا الجذعية في لبن الأمهات حليب المرضعات الوجور الحولين ثبوت حرمة الرضاع والمحرمية إنبات اللحم وإنشاز العظم">
+                    <div class="flex items-start justify-between gap-2 pb-2.5 border-b border-slate-100 mb-3">
+                        <h3 class="text-xs sm:text-sm font-bold text-slate-900 flex items-center">
+                            <span class="w-5 h-5 rounded-full bg-slate-100 text-slate-700 text-[11px] font-mono inline-flex items-center justify-center ml-1.5">8</span>
                             الخلايا الجذعية في لبن الأمهات (حليب المرضعات)
                         </h3>
-                        <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300 whitespace-nowrap">
+                        <span class="px-2 py-0.5 rounded-full text-[10px] sm:text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300 whitespace-nowrap">
                             جواز التداوي + ثبوت المحرمية
                         </span>
                     </div>
-                    
-                    <div class="space-y-3.5 text-sm flex-grow">
-                        <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
-                            <span class="font-bold text-teal-800 text-xs block mb-1">📌 المسألة:</span>
+                    <div class="space-y-2.5 text-xs sm:text-sm">
+                        <div>
+                            <span class="font-bold text-teal-900 text-xs block mb-0.5">📌 المسألة:</span>
                             <p class="text-slate-700">حكم التداوي بها، وأثر إعطائها للمريض عبر الفم في إثبات الحرمة والمحرمية [60-63].</p>
                         </div>
-
-                        <div class="bg-emerald-50/70 p-3 rounded-xl border border-emerald-200/60">
-                            <span class="font-bold text-emerald-900 text-xs block mb-1">⚖️ الحكم الشرعي الراجح:</span>
-                            <p class="text-emerald-950 font-semibold">جواز التداوي بها، وثبوت حرمة الرضاع والمحرمية بها إذا أُعطيت للرضيع عبر الفم في الحولين [56, 61, 62, 64-66].</p>
+                        <div class="bg-emerald-50/80 p-2.5 rounded-xl border border-emerald-200/70">
+                            <span class="font-bold text-emerald-950 text-xs block mb-0.5">⚖️ الحكم الشرعي الراجح:</span>
+                            <p class="text-emerald-950 font-bold">جواز التداوي بها، وثبوت حرمة الرضاع والمحرمية بها إذا أُعطيت للرضيع عبر الفم في الحولين [56, 61, 62, 64-66].</p>
                         </div>
-
-                        <div>
-                            <span class="font-bold text-indigo-900 text-xs block mb-1">📖 التخريج الفقهي والعلة:</span>
-                            <p class="text-slate-600 text-xs leading-relaxed mb-2">
-                                يُخرَّج جواز التداوي بها قياساً على <strong class="text-slate-800">«مشروعية الرضاع والتغذية بحليب الأم»</strong> [56, 61]؛
-                            </p>
-                            <p class="text-slate-600 text-xs leading-relaxed">
-                                وتُعلل المحرمية بتخريج المسألة على <strong class="text-slate-800">«مسألة الوجور»</strong> (صب اللبن في الفم أو الحلق) عند جمهور الفقهاء (الحنفية والمالكية والشافعية والحنابلة)؛ لأن المعتبر في تحريم الرضاع هو وصول اللبن إلى الجوف وإنبات اللحم وإنشاز العظم في الحولين بغض النظر عن طريقة الوصول [64-69].
+                        <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200">
+                            <span class="font-bold text-indigo-950 text-xs block mb-0.5">📖 التخريج الفقهي والعلة:</span>
+                            <p class="text-slate-600 leading-relaxed text-[11px] sm:text-xs">
+                                يُخرَّج جواز التداوي بها قياساً على <strong class="text-slate-800">«مشروعية الرضاع والتغذية بحليب الأم»</strong> [56, 61]؛ وتُعلل المحرمية بتخريج المسألة على <strong class="text-slate-800">«مسألة الوجور»</strong> (صب اللبن في الفم أو الحلق) عند جمهور الفقهاء (الحنفية والمالكية والشافعية والحنابلة)؛ لأن المعتبر في تحريم الرضاع هو وصول اللبن إلى الجوف وإنبات اللحم وإنشاز العظم في الحولين بغض النظر عن طريقة الوصول [64-69].
                             </p>
                         </div>
                     </div>
                 </article>
 
-                <!-- 9. الخلايا الجذعية الحيوانية -->
-                <article class="issue-card bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition flex flex-col lg:col-span-2" data-category="shart" data-keywords="الخلايا الجذعية الحيوانية Xenotransplantation مأكول اللحم مذكى طاهر الضرورات تبيح المحظورات السلامة الطبية">
-                    <div class="flex items-start justify-between gap-3 mb-3">
-                        <h3 class="text-base sm:text-lg font-bold text-slate-900 flex items-center">
-                            <span class="w-6 h-6 rounded-md bg-slate-100 text-slate-700 inline-flex items-center justify-center text-xs font-mono ml-2">9</span>
+                <!-- 9. الخلايا الجذعية الحيوانية (Xenotransplantation) -->
+                <article class="data-item bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-sm" data-category="shart" data-search="الخلايا الجذعية الحيوانية Xenotransplantation مأكول اللحم مذكى طاهر الضرورات تبيح المحظورات السلامة الطبية مخاطر فيروسية">
+                    <div class="flex items-start justify-between gap-2 pb-2.5 border-b border-slate-100 mb-3">
+                        <h3 class="text-xs sm:text-sm font-bold text-slate-900 flex items-center">
+                            <span class="w-5 h-5 rounded-full bg-slate-100 text-slate-700 text-[11px] font-mono inline-flex items-center justify-center ml-1.5">9</span>
                             الخلايا الجذعية الحيوانية (Xenotransplantation)
                         </h3>
-                        <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800 border border-amber-300 whitespace-nowrap">
+                        <span class="px-2 py-0.5 rounded-full text-[10px] sm:text-xs font-bold bg-amber-100 text-amber-800 border border-amber-300 whitespace-nowrap">
                             الجواز الشرعي المشرُوط
                         </span>
                     </div>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm flex-grow">
-                        <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
-                            <span class="font-bold text-teal-800 text-xs block mb-1">📌 المسألة:</span>
+                    <div class="space-y-2.5 text-xs sm:text-sm">
+                        <div>
+                            <span class="font-bold text-teal-900 text-xs block mb-0.5">📌 المسألة:</span>
                             <p class="text-slate-700">حكم حقن واستخدام الخلايا الجذعية المستخرجة من الحيوان في جسم الإنسان [70].</p>
                         </div>
-
-                        <div class="bg-amber-50/70 p-3.5 rounded-xl border border-amber-200/60">
-                            <span class="font-bold text-amber-900 text-xs block mb-1">⚖️ الحكم الشرعي الراجح:</span>
-                            <p class="text-amber-950 font-semibold">الجواز الشرعي المشرُوط بأن يكون الحيوان مأكول اللحم ومذكى طاهراً (كالبقر والغنم)، أو عند الضرورة الماسة من غيره إن لم يوجد البديل [70, 71].</p>
+                        <div class="bg-amber-50/80 p-2.5 rounded-xl border border-amber-200/70">
+                            <span class="font-bold text-amber-950 text-xs block mb-0.5">⚖️ الحكم الشرعي الراجح:</span>
+                            <p class="text-amber-950 font-bold">الجواز الشرعي المشرُوط بأن يكون الحيوان مأكول اللحم ومذكى طاهراً (كالبقر والغنم)، أو عند الضرورة الماسة من غيره إن لم يوجد البديل [70, 71].</p>
                         </div>
-
-                        <div class="p-3.5 rounded-xl border border-slate-200">
-                            <span class="font-bold text-indigo-900 text-xs block mb-1">📖 التخريج الفقهي والعلة:</span>
-                            <p class="text-slate-600 text-xs leading-relaxed">
+                        <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200">
+                            <span class="font-bold text-indigo-950 text-xs block mb-0.5">📖 التخريج الفقهي والعلة:</span>
+                            <p class="text-slate-600 leading-relaxed text-[11px] sm:text-xs">
                                 يُخرَّج على <strong class="text-slate-800">«أصل الإباحة والانتفاع بأجزاء الحيوان الطاهر للتداوي»</strong> وقاعدة <strong class="text-slate-800">«الضرورات تبيح المحظورات»</strong> إعمالاً لشروط السلامة الطبية وتجنباً للنجاسات والمخاطر الفيروسية [49, 50, 70, 71].
                             </p>
                         </div>
@@ -564,46 +505,42 @@
             </div>
         </section>
 
-        <!-- ==================== TAB 3: الأحكام التعاقدية والمعاملاتية لبنوك وحفظ الخلايا ==================== -->
-        <section id="tab-transactions" class="tab-content hidden transition-all duration-300">
-            <div class="mb-6">
-                <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center">
-                    <span class="w-8 h-8 rounded-lg bg-amber-700 text-white inline-flex items-center justify-center text-sm ml-3 font-mono">3</span>
+        <!-- ==================== التبويب 3: بنوك وحفظ الخلايا (4 مسائل) ==================== -->
+        <section id="tab-transactions" class="tab-content hidden transition-opacity duration-200">
+            <div class="flex items-center justify-between mb-3 px-1">
+                <h2 class="text-sm sm:text-base font-bold text-slate-900 flex items-center gap-1.5">
+                    <span class="w-6 h-6 rounded-lg bg-amber-700 text-white inline-flex items-center justify-center text-xs font-mono">3</span>
                     الأحكام التعاقدية والمعاملاتية لبنوك وحفظ الخلايا
                 </h2>
-                <p class="text-xs sm:text-sm text-slate-500 mt-1">
-                    دراسة التكييف الفقهي للبيوع، والتبرعات، والضمان، وأهلية السجين في منظومة بنوك الخلايا [72-82].
-                </p>
+                <span class="text-[10px] sm:text-xs text-slate-500 font-mono bg-slate-100 px-2 py-0.5 rounded-md">4 مسائل</span>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6" id="transactionsGrid">
+            <!-- بطاقات المعاملات الأربع -->
+            <div class="space-y-3 sm:space-y-4" id="cardsTransactionsContainer">
 
                 <!-- 1. بيع وشراء الخلايا الجذعية -->
-                <article class="issue-card bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition flex flex-col" data-category="shart" data-keywords="بيع وشراء الخلايا الجذعية المعاوضة المالية كرامة أجزاء الآدمي مال متقوم ولقد كرمنا بني آدم مقابل الخدمات الفنية">
-                    <div class="flex items-start justify-between gap-3 mb-3">
-                        <h3 class="text-base sm:text-lg font-bold text-slate-900 flex items-center">
-                            <span class="w-6 h-6 rounded-md bg-amber-100 text-amber-900 inline-flex items-center justify-center text-xs font-mono ml-2">1</span>
+                <article class="data-item bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-sm" data-category="shart" data-search="بيع وشراء الخلايا الجذعية والبدائل الشرعية للتعويض المعاوضة المالية كرامة أجزاء الآدمي مال متقوم ولقد كرمنا بني آدم مقابل الخدمات الفنية الفحص الحفظ">
+                    <div class="flex items-start justify-between gap-2 pb-2.5 border-b border-slate-100 mb-3">
+                        <h3 class="text-xs sm:text-sm font-bold text-slate-900 flex items-center">
+                            <span class="w-5 h-5 rounded-full bg-amber-100 text-amber-900 text-[11px] font-mono inline-flex items-center justify-center ml-1.5">1</span>
                             بيع وشراء الخلايا الجذعية والبدائل الشرعية للتعويض
                         </h3>
-                        <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800 border border-amber-300 whitespace-nowrap">
+                        <span class="px-2 py-0.5 rounded-full text-[10px] sm:text-xs font-bold bg-amber-100 text-amber-800 border border-amber-300 whitespace-nowrap">
                             تحريم المعاوضة / إباحة الخدمات
                         </span>
                     </div>
-
-                    <div class="space-y-3.5 text-sm flex-grow">
-                        <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
-                            <span class="font-bold text-teal-800 text-xs block mb-1">📌 المسألة:</span>
+                    <div class="space-y-2.5 text-xs sm:text-sm">
+                        <div>
+                            <span class="font-bold text-teal-900 text-xs block mb-0.5">📌 المسألة:</span>
                             <p class="text-slate-700">المعاوضة المالية والبيع والشراء للخلايا الجذعية البشرية [72-75].</p>
                         </div>
-
-                        <div class="bg-amber-50/70 p-3 rounded-xl border border-amber-200/60">
-                            <span class="font-bold text-amber-900 text-xs block mb-1">⚖️ الحكم الشرعي الراجح:</span>
-                            <p class="text-amber-950 font-semibold">تحريم البيع والشراء كمعاوضة تجارية، وجواز أخذ الأموال مقابل الخدمات أو الاستخراج والحفظ أو المكافأة والتبرع لا كعوض عن الخلايا [72-75].</p>
+                        <div class="bg-amber-50/80 p-2.5 rounded-xl border border-amber-200/70">
+                            <span class="font-bold text-amber-950 text-xs block mb-0.5">⚖️ الحكم الشرعي الراجح:</span>
+                            <p class="text-amber-950 font-bold">تحريم البيع والشراء كمعاوضة تجارية، وجواز أخذ الأموال مقابل الخدمات أو الاستخراج والحفظ أو المكافأة والتبرع لا كعوض عن الخلايا [72-75].</p>
                         </div>
-
-                        <div>
-                            <span class="font-bold text-indigo-900 text-xs block mb-1">📖 التخريج الفقهي والعلة:</span>
-                            <p class="text-slate-600 text-xs leading-relaxed">
+                        <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200">
+                            <span class="font-bold text-indigo-950 text-xs block mb-0.5">📖 التخريج الفقهي والعلة:</span>
+                            <p class="text-slate-600 leading-relaxed text-[11px] sm:text-xs">
                                 يُخرَّج تحريم البيع على <strong class="text-slate-800">«كرامة أجزاء الآدمي وأن الإنسان وأجزاءه ليست مالاً متقوماً ولا محلاً للبيع والمعاوضة التجاريين»</strong> لقوله تعالى <span class="quran-verse font-bold text-slate-900">﴿وَلَقَدْ كَرَّمْنَا بَنِي آدَمَ﴾</span> [74, 76, 77]؛ ويُستثنى إعطاء المال للبنك أو المتبرع من باب <strong class="text-slate-800">«التبرع أو المكافأة أو مقابل تكاليف الفحص والحفظ الفنية»</strong> [75].
                             </p>
                         </div>
@@ -611,31 +548,28 @@
                 </article>
 
                 <!-- 2. التكييف الفقهي لعقد التبرع -->
-                <article class="issue-card bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition flex flex-col" data-category="shart" data-keywords="عقد التبرع بالخلايا اللزوم القبض حق الرجوع الهبة التبرعات النافلة">
-                    <div class="flex items-start justify-between gap-3 mb-3">
-                        <h3 class="text-base sm:text-lg font-bold text-slate-900 flex items-center">
-                            <span class="w-6 h-6 rounded-md bg-amber-100 text-amber-900 inline-flex items-center justify-center text-xs font-mono ml-2">2</span>
+                <article class="data-item bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-sm" data-category="shart" data-search="التكييف الفقهي لعقد التبرع بالخلايا اللزوم القبض حق الرجوع الهبة التبرعات النافلة القبض لتمام الملك">
+                    <div class="flex items-start justify-between gap-2 pb-2.5 border-b border-slate-100 mb-3">
+                        <h3 class="text-xs sm:text-sm font-bold text-slate-900 flex items-center">
+                            <span class="w-5 h-5 rounded-full bg-amber-100 text-amber-900 text-[11px] font-mono inline-flex items-center justify-center ml-1.5">2</span>
                             التكييف الفقهي لعقد التبرع بالخلايا (اللزوم والقبض وحق الرجوع)
                         </h3>
-                        <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800 border border-amber-300 whitespace-nowrap">
+                        <span class="px-2 py-0.5 rounded-full text-[10px] sm:text-xs font-bold bg-amber-100 text-amber-800 border border-amber-300 whitespace-nowrap">
                             جائز قبل القبض / لازم بعده
                         </span>
                     </div>
-
-                    <div class="space-y-3.5 text-sm flex-grow">
-                        <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
-                            <span class="font-bold text-teal-800 text-xs block mb-1">📌 المسألة:</span>
+                    <div class="space-y-2.5 text-xs sm:text-sm">
+                        <div>
+                            <span class="font-bold text-teal-900 text-xs block mb-0.5">📌 المسألة:</span>
                             <p class="text-slate-700">التكييف الشرعي للتبرع بالخلايا ومدى لزومه وحق المتبرع في الرجوع فيه قبل التسليم [78-80].</p>
                         </div>
-
-                        <div class="bg-amber-50/70 p-3 rounded-xl border border-amber-200/60">
-                            <span class="font-bold text-amber-900 text-xs block mb-1">⚖️ الحكم الشرعي الراجح:</span>
-                            <p class="text-amber-950 font-semibold">عقد التبرع عقد غير لازم (جائز) قبل القبض والاستخراج، ويحق للمتبرع الرجوع فيه؛ ويلزم بعد القبض والتسليم للبنك أو المريض [78-80].</p>
+                        <div class="bg-amber-50/80 p-2.5 rounded-xl border border-amber-200/70">
+                            <span class="font-bold text-amber-950 text-xs block mb-0.5">⚖️ الحكم الشرعي الراجح:</span>
+                            <p class="text-amber-950 font-bold">عقد التبرع عقد غير لازم (جائز) قبل القبض والاستخراج، ويحق للمتبرع الرجوع فيه؛ ويلزم بعد القبض والتسليم للبنك أو المريض [78-80].</p>
                         </div>
-
-                        <div>
-                            <span class="font-bold text-indigo-900 text-xs block mb-1">📖 التخريج الفقهي والعلة:</span>
-                            <p class="text-slate-600 text-xs leading-relaxed">
+                        <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200">
+                            <span class="font-bold text-indigo-950 text-xs block mb-0.5">📖 التخريج الفقهي والعلة:</span>
+                            <p class="text-slate-600 leading-relaxed text-[11px] sm:text-xs">
                                 يُخرَّج عقد التبرع على <strong class="text-slate-800">«أحكام الهبة والتبرعات النافلة»</strong>، حيث يُشترط <strong class="text-slate-800">القبض لتمام الملك ولزوم العقد</strong>؛ فقبل الاستخراج والقبض لم يتم القبض الشرعي فيحق للمتبرع الرجوع، أما بعد القبض والتسليم فيلزم العقد ولا يحق الرجوع حماية لحق المتلقي واستقرار المعاملات [78-80].
                             </p>
                         </div>
@@ -643,63 +577,57 @@
                 </article>
 
                 <!-- 3. موجبات الضمان -->
-                <article class="issue-card bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition flex flex-col" data-category="mubah" data-keywords="موجبات الضمان عيب في الخلايا المتبرع محسن وما على المحسنين من سبيل الكتمان التدليس الغش">
-                    <div class="flex items-start justify-between gap-3 mb-3">
-                        <h3 class="text-base sm:text-lg font-bold text-slate-900 flex items-center">
-                            <span class="w-6 h-6 rounded-md bg-amber-100 text-amber-900 inline-flex items-center justify-center text-xs font-mono ml-2">3</span>
+                <article class="data-item bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-sm" data-category="mubah" data-search="موجبات الضمان هل يضمن المتبرع إذا ظهر عيب في الخلايا بعد التبرع المتبرع محسن وما على المحسنين من سبيل الكتمان التدليس الغش">
+                    <div class="flex items-start justify-between gap-2 pb-2.5 border-b border-slate-100 mb-3">
+                        <h3 class="text-xs sm:text-sm font-bold text-slate-900 flex items-center">
+                            <span class="w-5 h-5 rounded-full bg-amber-100 text-amber-900 text-[11px] font-mono inline-flex items-center justify-center ml-1.5">3</span>
                             موجبات الضمان (هل يضمن المتبرع إذا ظهر عيب في الخلايا بعد التبرع؟)
                         </h3>
-                        <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300 whitespace-nowrap">
+                        <span class="px-2 py-0.5 rounded-full text-[10px] sm:text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300 whitespace-nowrap">
                             عدم الضمان إلا مع التدليس
                         </span>
                     </div>
-
-                    <div class="space-y-3.5 text-sm flex-grow">
-                        <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
-                            <span class="font-bold text-teal-800 text-xs block mb-1">📌 المسألة:</span>
+                    <div class="space-y-2.5 text-xs sm:text-sm">
+                        <div>
+                            <span class="font-bold text-teal-900 text-xs block mb-0.5">📌 المسألة:</span>
                             <p class="text-slate-700">مسؤولية المتبرع وضمانه في حال ظهور عيب أو مرض خفي في الخلايا الجذعية المتبرع بها [78, 80].</p>
                         </div>
-
-                        <div class="bg-emerald-50/70 p-3 rounded-xl border border-emerald-200/60">
-                            <span class="font-bold text-emerald-900 text-xs block mb-1">⚖️ الحكم الشرعي الراجح:</span>
-                            <p class="text-emerald-950 font-semibold">عدم ضمان المتبرع للعيب المستتر، إلا إذا اقترن فعله بتعمد الكتمان أو التدليس أو الغش مع علمه بالعيب [78, 80].</p>
+                        <div class="bg-emerald-50/80 p-2.5 rounded-xl border border-emerald-200/70">
+                            <span class="font-bold text-emerald-950 text-xs block mb-0.5">⚖️ الحكم الشرعي الراجح:</span>
+                            <p class="text-emerald-950 font-bold">عدم ضمان المتبرع للعيب المستتر، إلا إذا اقترن فعله بتعمد الكتمان أو التدليس أو الغش مع علمه بالعيب [78, 80].</p>
                         </div>
-
-                        <div>
-                            <span class="font-bold text-indigo-900 text-xs block mb-1">📖 التخريج الفقهي والعلة:</span>
-                            <p class="text-slate-600 text-xs leading-relaxed">
-                                يُخرَّج على قاعدة <strong class="text-slate-800">«المتبرع محسن، وما على المحسنين من سبيل»</strong> <span class="quran-verse font-bold text-slate-900">(التوبة: 91)</span>؛ فالمتبرع متطوع بلا عوض فلا يدخل على وجه الضمان والمعاوضة، فلا يضمن العيوب الخفية إلا إذا ثبت تعديه وتفريطه وتدليسه التعمدي [80].
+                        <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200">
+                            <span class="font-bold text-indigo-950 text-xs block mb-0.5">📖 التخريج الفقهي والعلة:</span>
+                            <p class="text-slate-600 leading-relaxed text-[11px] sm:text-xs">
+                                يُخرَّج على قاعدة <strong class="text-slate-800">«المتبرع محسن، وما على المحسنين من سبيل»</strong> (التوبة: 91)؛ فالمتبرع متطوع بلا عوض فلا يدخل على وجه الضمان والمعاوضة، فلا يضمن العيوب الخفية إلا إذا ثبت تعديه وتفريطه وتدليسه التعمدي [80].
                             </p>
                         </div>
                     </div>
                 </article>
 
                 <!-- 4. تبرع المحبوس (السجين) -->
-                <article class="issue-card bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition flex flex-col" data-category="mubah" data-keywords="تبرع المحبوس السجين سلب الحرية الأهلية الشرعية الرضا الحر الإكراه">
-                    <div class="flex items-start justify-between gap-3 mb-3">
-                        <h3 class="text-base sm:text-lg font-bold text-slate-900 flex items-center">
-                            <span class="w-6 h-6 rounded-md bg-amber-100 text-amber-900 inline-flex items-center justify-center text-xs font-mono ml-2">4</span>
+                <article class="data-item bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-sm" data-category="mubah" data-search="حكم تبرع المحبوس السجين بخلاياه الجذعية سلب الحرية البدنية الأهلية الشرعية الرضا الكامل الاختيار الحر الإكراه الضغط">
+                    <div class="flex items-start justify-between gap-2 pb-2.5 border-b border-slate-100 mb-3">
+                        <h3 class="text-xs sm:text-sm font-bold text-slate-900 flex items-center">
+                            <span class="w-5 h-5 rounded-full bg-amber-100 text-amber-900 text-[11px] font-mono inline-flex items-center justify-center ml-1.5">4</span>
                             حكم تبرع المحبوس (السجين) بخلاياه الجذعية
                         </h3>
-                        <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300 whitespace-nowrap">
+                        <span class="px-2 py-0.5 rounded-full text-[10px] sm:text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300 whitespace-nowrap">
                             جواز بشرط الرضا التام
                         </span>
                     </div>
-
-                    <div class="space-y-3.5 text-sm flex-grow">
-                        <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
-                            <span class="font-bold text-teal-800 text-xs block mb-1">📌 المسألة:</span>
+                    <div class="space-y-2.5 text-xs sm:text-sm">
+                        <div>
+                            <span class="font-bold text-teal-900 text-xs block mb-0.5">📌 المسألة:</span>
                             <p class="text-slate-700">أثر عقوبة الحبس وسلب الحرية على أهلية السجين ورضاه في التبرع بخلاياه الجذعية [78, 81, 82].</p>
                         </div>
-
-                        <div class="bg-emerald-50/70 p-3 rounded-xl border border-emerald-200/60">
-                            <span class="font-bold text-emerald-900 text-xs block mb-1">⚖️ الحكم الشرعي الراجح:</span>
-                            <p class="text-emerald-950 font-semibold">جواز تبرع السجين بخلاياه الجذعية إذا صدر عن رضا كامل واختيار حر ودون إكراه أو ضغط [78, 81, 82].</p>
+                        <div class="bg-emerald-50/80 p-2.5 rounded-xl border border-emerald-200/70">
+                            <span class="font-bold text-emerald-950 text-xs block mb-0.5">⚖️ الحكم الشرعي الراجح:</span>
+                            <p class="text-emerald-950 font-bold">جواز تبرع السجين بخلاياه الجذعية إذا صدر عن رضا كامل واختيار حر ودون إكراه أو ضغط [78, 81, 82].</p>
                         </div>
-
-                        <div>
-                            <span class="font-bold text-indigo-900 text-xs block mb-1">📖 التخريج الفقهي والعلة:</span>
-                            <p class="text-slate-600 text-xs leading-relaxed">
+                        <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200">
+                            <span class="font-bold text-indigo-950 text-xs block mb-0.5">📖 التخريج الفقهي والعلة:</span>
+                            <p class="text-slate-600 leading-relaxed text-[11px] sm:text-xs">
                                 لأن <strong class="text-slate-800">«الحبس سلبٌ للحرية البدنية المقيدة وليس إهداراً للأهلية الشرعية والتصرفات التطوعية»</strong>، فيبقى السجين كامل الأهلية الشرعية في التبرع شريطة التحقق الفعلي من انعدام الإكراه والتأكد من الرضا الحر المطلق [81, 82].
                             </p>
                         </div>
@@ -709,375 +637,491 @@
             </div>
         </section>
 
-        <!-- ==================== TAB 4: الخلاصة وجدول النتائج الجازمة ==================== -->
-        <section id="tab-summary" class="tab-content hidden transition-all duration-300">
-            <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-slate-200 gap-4">
+        <!-- ==================== التبويب 4: الجدول التقريري الجازم ==================== -->
+        <section id="tab-summary" class="tab-content hidden transition-opacity duration-200">
+            <div class="bg-white rounded-2xl p-4 sm:p-6 shadow-sm border border-slate-200">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-200 gap-2 mb-4">
                     <div>
-                        <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center">
-                            <span class="w-8 h-8 rounded-lg bg-emerald-700 text-white inline-flex items-center justify-center text-sm ml-3 font-mono">4</span>
+                        <h2 class="text-sm sm:text-base font-bold text-slate-900 flex items-center gap-1.5">
+                            <span class="w-6 h-6 rounded-lg bg-emerald-700 text-white inline-flex items-center justify-center text-xs font-mono">4</span>
                             خلاصة تقريرية مقتضبة (جدول النتائج الجازمة)
                         </h2>
-                        <p class="text-xs sm:text-sm text-slate-500 mt-1">
-                            مصفوفة الأحكام والضوابط الفقهية المقارنة الـ 16 كاملة كما استخلصتها الأبحاث المحكمة.
-                        </p>
+                        <span class="text-[11px] text-slate-500">16 مسألة شاملة مستخلصة بنصها الكامل</span>
                     </div>
-                    <div class="flex items-center gap-2 text-xs">
-                        <span class="w-3 h-3 rounded-full bg-emerald-500"></span> مباح
-                        <span class="w-3 h-3 rounded-full bg-amber-500 mr-2"></span> مشروط/تفصيل
-                        <span class="w-3 h-3 rounded-full bg-rose-500 mr-2"></span> محظور
+
+                    <!-- مبدل طريقة العرض: بطاقات ملائمة للجوال / جدول كلاسيكي -->
+                    <div class="flex items-center bg-slate-100 p-1 rounded-xl text-xs self-start sm:self-auto">
+                        <button onclick="toggleSummaryLayout('cards')" id="btnLayoutCards" class="px-2.5 py-1 rounded-lg font-bold bg-white text-emerald-800 shadow-sm transition">
+                            📱 عرض بطاقات الجوال
+                        </button>
+                        <button onclick="toggleSummaryLayout('table')" id="btnLayoutTable" class="px-2.5 py-1 rounded-lg text-slate-600 hover:text-slate-900 transition">
+                            📋 عرض الجدول
+                        </button>
                     </div>
                 </div>
 
-                <!-- Responsive Table Wrapper -->
-                <div class="overflow-x-auto mt-6">
-                    <table class="w-full text-right border-collapse text-sm" id="verdictTable">
+                <!-- 1. عرض بطاقات الجوال المريح (افتراضي ومهيأ للمس والشاشات الصغيرة) -->
+                <div id="summaryCardsContainer" class="space-y-3">
+                    
+                    <!-- Row 1 -->
+                    <div class="data-item bg-slate-50/90 rounded-xl p-3.5 border border-slate-200/80" data-category="shart" data-search="اللقائح الفائضة أطفال الأنابيب مباح بشروط">
+                        <div class="flex items-start justify-between gap-2 mb-1.5">
+                            <span class="font-bold text-slate-900 text-xs sm:text-sm">اللقائح الفائضة (أطفال الأنابيب)</span>
+                            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800 border border-amber-300">مباح بشروط</span>
+                        </div>
+                        <div class="text-[11px] sm:text-xs text-slate-600">
+                            <span class="font-semibold text-slate-700">الضابط أو الشرط الفقهي المباشر:</span>
+                            عدم وجود مصدر أقل مفسدة + أخذ خلية واحدة في مرحلة 8 خلايا دون إتلاف البقية [8, 12, 13].
+                        </div>
+                    </div>
+
+                    <!-- Row 2 -->
+                    <div class="data-item bg-slate-50/90 rounded-xl p-3.5 border border-slate-200/80" data-category="mubah" data-search="السقط التلقائي والإجهاض لعذر مباح">
+                        <div class="flex items-start justify-between gap-2 mb-1.5">
+                            <span class="font-bold text-slate-900 text-xs sm:text-sm">السقط التلقائي والإجهاض لعذر</span>
+                            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">مباح</span>
+                        </div>
+                        <div class="text-[11px] sm:text-xs text-slate-600">
+                            <span class="font-semibold text-slate-700">الضابط أو الشرط الفقهي المباشر:</span>
+                            عدم تسبب الإجهاض لأجل الخلايا + إذن الوالدين [20, 24-26].
+                        </div>
+                    </div>
+
+                    <!-- Row 3 -->
+                    <div class="data-item bg-slate-50/90 rounded-xl p-3.5 border border-slate-200/80" data-category="haram" data-search="الإجهاض العمدي لغير عذر محظور مطلقا">
+                        <div class="flex items-start justify-between gap-2 mb-1.5">
+                            <span class="font-bold text-slate-900 text-xs sm:text-sm">الإجهاض العمدي لغير عذر</span>
+                            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-rose-100 text-rose-800 border border-rose-300">محظور مطلقاً</span>
+                        </div>
+                        <div class="text-[11px] sm:text-xs text-slate-600">
+                            <span class="font-semibold text-slate-700">الضابط أو الشرط الفقهي المباشر:</span>
+                            لكونه قتلاً ومناقضاً لكرامة الجنين وسداً لذرائع المتاجرة [22, 23, 26].
+                        </div>
+                    </div>
+
+                    <!-- Row 4 -->
+                    <div class="data-item bg-slate-50/90 rounded-xl p-3.5 border border-slate-200/80" data-category="shart" data-search="الأجنة المشوهة خلقيا مباح قبل 120 يوما محظور بعده">
+                        <div class="flex items-start justify-between gap-2 mb-1.5">
+                            <span class="font-bold text-slate-900 text-xs sm:text-sm">الأجنة المشوهة خلقياً</span>
+                            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800 border border-amber-300">مباح قبل 120 يوماً / محظور بعده</span>
+                        </div>
+                        <div class="text-[11px] sm:text-xs text-slate-600">
+                            <span class="font-semibold text-slate-700">الضابط أو الشرط الفقهي المباشر:</span>
+                            قبل 120 يوماً بشرط العذر المسوغ؛ وبعد 120 يوماً محرم كالمكلفين إلا لإنقاذ حياة الأم [24, 30, 31].
+                        </div>
+                    </div>
+
+                    <!-- Row 5 -->
+                    <div class="data-item bg-slate-50/90 rounded-xl p-3.5 border border-slate-200/80" data-category="haram" data-search="التلقيح العمدي بين أجنبيين محظور مطلقا">
+                        <div class="flex items-start justify-between gap-2 mb-1.5">
+                            <span class="font-bold text-slate-900 text-xs sm:text-sm">التلقيح العمدي بين أجنبيين</span>
+                            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-rose-100 text-rose-800 border border-rose-300">محظور مطلقاً</span>
+                        </div>
+                        <div class="text-[11px] sm:text-xs text-slate-600">
+                            <span class="font-semibold text-slate-700">الضابط أو الشرط الفقهي المباشر:</span>
+                            درءاً لاختلاط الأنساب وبطلان التبرع بالنطاف البشرية [13, 32].
+                        </div>
+                    </div>
+
+                    <!-- Row 6 -->
+                    <div class="data-item bg-slate-50/90 rounded-xl p-3.5 border border-slate-200/80" data-category="shart" data-search="التلقيح العمدي بين الزوجين للخلايا محظور كأصل مباح للضرورة">
+                        <div class="flex items-start justify-between gap-2 mb-1.5">
+                            <span class="font-bold text-slate-900 text-xs sm:text-sm">التلقيح العمدي بين الزوجين للخلايا</span>
+                            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800 border border-amber-300">محظور كأصل / مباح للضرورة</span>
+                        </div>
+                        <div class="text-[11px] sm:text-xs text-slate-600">
+                            <span class="font-semibold text-slate-700">الضابط أو الشرط الفقهي المباشر:</span>
+                            تحريمه أصل لابتذال الجنين؛ وإباحته مشروطة بالتعين والضرورة القصوى وعدم البديل [34, 35].
+                        </div>
+                    </div>
+
+                    <!-- Row 7 -->
+                    <div class="data-item bg-slate-50/90 rounded-xl p-3.5 border border-slate-200/80" data-category="haram" data-search="الاستنساخ العلاجي SCNT محظور مطلقا">
+                        <div class="flex items-start justify-between gap-2 mb-1.5">
+                            <span class="font-bold text-slate-900 text-xs sm:text-sm">الاستنساخ العلاجي (SCNT)</span>
+                            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-rose-100 text-rose-800 border border-rose-300">محظور مطلقاً</span>
+                        </div>
+                        <div class="text-[11px] sm:text-xs text-slate-600">
+                            <span class="font-semibold text-slate-700">الضابط أو الشرط الفقهي المباشر:</span>
+                            لكونه إنشتاًء للجنين ثم تدميراً وقتلاً له مما ينافي الكرامة الإنسانية ﴿وَلَقَدْ كَرَّمْنَا بَنِي آدَمَ﴾ [35, 39, 40].
+                        </div>
+                    </div>
+
+                    <!-- Row 8 -->
+                    <div class="data-item bg-slate-50/90 rounded-xl p-3.5 border border-slate-200/80" data-category="mubah" data-search="دم الحبل السري والمشيمة مباح">
+                        <div class="flex items-start justify-between gap-2 mb-1.5">
+                            <span class="font-bold text-slate-900 text-xs sm:text-sm">دم الحبل السري والمشيمة</span>
+                            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">مباح</span>
+                        </div>
+                        <div class="text-[11px] sm:text-xs text-slate-600">
+                            <span class="font-semibold text-slate-700">الضابط أو الشرط الفقهي المباشر:</span>
+                            التداوي المأذون فيه + عدم الضرر بالوليد والأم + إذن الوالدين [27, 46, 47].
+                        </div>
+                    </div>
+
+                    <!-- Row 9 -->
+                    <div class="data-item bg-slate-50/90 rounded-xl p-3.5 border border-slate-200/80" data-category="mubah" data-search="خلايا البالغين والأطفال لنفسهم مباح">
+                        <div class="flex items-start justify-between gap-2 mb-1.5">
+                            <span class="font-bold text-slate-900 text-xs sm:text-sm">خلايا البالغين والأطفال لنفسهم</span>
+                            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">مباح</span>
+                        </div>
+                        <div class="text-[11px] sm:text-xs text-slate-600">
+                            <span class="font-semibold text-slate-700">الضابط أو الشرط الفقهي المباشر:</span>
+                            تدخل في باب التداوي المشروع بشرط الإذن وعدم الضرر [27, 53, 54].
+                        </div>
+                    </div>
+
+                    <!-- Row 10 -->
+                    <div class="data-item bg-slate-50/90 rounded-xl p-3.5 border border-slate-200/80" data-category="haram" data-search="تبرع الطفل بخلاياه لغيره محظور باطل">
+                        <div class="flex items-start justify-between gap-2 mb-1.5">
+                            <span class="font-bold text-slate-900 text-xs sm:text-sm">تبرع الطفل بخلاياه لغيره</span>
+                            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-rose-100 text-rose-800 border border-rose-300">محظور باطل</span>
+                        </div>
+                        <div class="text-[11px] sm:text-xs text-slate-600">
+                            <span class="font-semibold text-slate-700">الضابط أو الشرط الفقهي المباشر:</span>
+                            لأن «تصرف الولي منوط بالمصلحة المحضة» والتبرع للغير ضرر محض بالطفل [55, 56, 58, 59].
+                        </div>
+                    </div>
+
+                    <!-- Row 11 -->
+                    <div class="data-item bg-slate-50/90 rounded-xl p-3.5 border border-slate-200/80" data-category="mubah" data-search="خلايا لبن الأمهات عبر الفم مباح وتثبت به المحرمية">
+                        <div class="flex items-start justify-between gap-2 mb-1.5">
+                            <span class="font-bold text-slate-900 text-xs sm:text-sm">خلايا لبن الأمهات (عبر الفم)</span>
+                            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">مباح وتثبت به المحرمية</span>
+                        </div>
+                        <div class="text-[11px] sm:text-xs text-slate-600">
+                            <span class="font-semibold text-slate-700">الضابط أو الشرط الفقهي المباشر:</span>
+                            تخرّج على مسألة الوجور في الحولين وتثبت بها حرمة الرضاع والمحرمية [56, 61, 64, 65].
+                        </div>
+                    </div>
+
+                    <!-- Row 12 -->
+                    <div class="data-item bg-slate-50/90 rounded-xl p-3.5 border border-slate-200/80" data-category="shart" data-search="الخلايا الجذعية الحيوانية مباح بشروط">
+                        <div class="flex items-start justify-between gap-2 mb-1.5">
+                            <span class="font-bold text-slate-900 text-xs sm:text-sm">الخلايا الجذعية الحيوانية</span>
+                            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800 border border-amber-300">مباح بشروط</span>
+                        </div>
+                        <div class="text-[11px] sm:text-xs text-slate-600">
+                            <span class="font-semibold text-slate-700">الضابط أو الشرط الفقهي المباشر:</span>
+                            أن يكون الحيوان طاهراً ومأكول اللحم، أو للضرورة القصوى مع الأمان الطبي [70, 71].
+                        </div>
+                    </div>
+
+                    <!-- Row 13 -->
+                    <div class="data-item bg-slate-50/90 rounded-xl p-3.5 border border-slate-200/80" data-category="shart" data-search="بيع وشراء الخلايا الجذعية محظور معاوضة مباح كخدمات">
+                        <div class="flex items-start justify-between gap-2 mb-1.5">
+                            <span class="font-bold text-slate-900 text-xs sm:text-sm">بيع وشراء الخلايا الجذعية</span>
+                            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800 border border-amber-300">محظور معاوضة / مباح كخدمات</span>
+                        </div>
+                        <div class="text-[11px] sm:text-xs text-slate-600">
+                            <span class="font-semibold text-slate-700">الضابط أو الشرط الفقهي المباشر:</span>
+                            الخلية ليست مالاً متقوماً للبيع؛ ويجوز التبرع أو المكافأة أو مقابل مصاريف الحفظ والاستخراج [73-75, 77].
+                        </div>
+                    </div>
+
+                    <!-- Row 14 -->
+                    <div class="data-item bg-slate-50/90 rounded-xl p-3.5 border border-slate-200/80" data-category="shart" data-search="عقد التبرع وحق الرجوع جائز قبل القبض لازم بعده">
+                        <div class="flex items-start justify-between gap-2 mb-1.5">
+                            <span class="font-bold text-slate-900 text-xs sm:text-sm">عقد التبرع وحق الرجوع</span>
+                            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800 border border-amber-300">جائز قبل القبض / لازم بعده</span>
+                        </div>
+                        <div class="text-[11px] sm:text-xs text-slate-600">
+                            <span class="font-semibold text-slate-700">الضابط أو الشرط الفقهي المباشر:</span>
+                            يُكيّف كهبة وتبرع؛ يحق الرجوع قبل الاستخراج، ويلزم بدفعها وتسليمها للبنك [78-80].
+                        </div>
+                    </div>
+
+                    <!-- Row 15 -->
+                    <div class="data-item bg-slate-50/90 rounded-xl p-3.5 border border-slate-200/80" data-category="mubah" data-search="ضمان المتبرع للعيب الخفي لا ضمان إلا مع التدليس">
+                        <div class="flex items-start justify-between gap-2 mb-1.5">
+                            <span class="font-bold text-slate-900 text-xs sm:text-sm">ضمان المتبرع للعيب الخفي</span>
+                            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">لا ضمان إلا مع التدليس</span>
+                        </div>
+                        <div class="text-[11px] sm:text-xs text-slate-600">
+                            <span class="font-semibold text-slate-700">الضابط أو الشرط الفقهي المباشر:</span>
+                            «المتبرع محسن وما على المحسنين من سبيل»، إلا إذا تعمد الغش والكتمان [78, 80].
+                        </div>
+                    </div>
+
+                    <!-- Row 16 -->
+                    <div class="data-item bg-slate-50/90 rounded-xl p-3.5 border border-slate-200/80" data-category="mubah" data-search="تبرع السجين المحبوس مباح">
+                        <div class="flex items-start justify-between gap-2 mb-1.5">
+                            <span class="font-bold text-slate-900 text-xs sm:text-sm">تبرع السجين المحبوس</span>
+                            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">مباح</span>
+                        </div>
+                        <div class="text-[11px] sm:text-xs text-slate-600">
+                            <span class="font-semibold text-slate-700">الضابط أو الشرط الفقهي المباشر:</span>
+                            سلب الحرية لا يسقط الأهلية؛ والشرط هو صدور التبرع عن رضا واختيار حر [78, 81, 82].
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- 2. عرض الجدول التقليدي مع تمرير أفقي سلس لمن يرغب في نمط الجدول -->
+                <div id="summaryTableContainer" class="hidden overflow-x-auto">
+                    <table class="w-full text-right border-collapse text-xs sm:text-sm">
                         <thead>
-                            <tr class="bg-slate-100/90 text-slate-700 border-b border-slate-200 text-xs font-bold uppercase tracking-wider">
-                                <th scope="col" class="py-3.5 px-4 rounded-r-xl">المسألة النازلة</th>
-                                <th scope="col" class="py-3.5 px-4">الحكم الشرعي التقريري</th>
-                                <th scope="col" class="py-3.5 px-4 rounded-l-xl">الضابط أو الشرط الفقهي المباشر</th>
+                            <tr class="bg-slate-100 text-slate-700 border-b border-slate-200 font-bold">
+                                <th class="py-3 px-3 rounded-r-xl whitespace-nowrap">المسألة النازلة</th>
+                                <th class="py-3 px-3 whitespace-nowrap">الحكم الشرعي التقريري</th>
+                                <th class="py-3 px-3 rounded-l-xl">الضابط أو الشرط الفقهي المباشر</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-slate-100">
-                            <!-- Row 1 -->
-                            <tr class="table-row-item hover:bg-slate-50 transition" data-category="shart" data-keywords="اللقائح الفائضة أطفال الأنابيب مباح بشروط">
-                                <td class="py-3.5 px-4 font-bold text-slate-900 whitespace-nowrap">اللقائح الفائضة (أطفال الأنابيب)</td>
-                                <td class="py-3.5 px-4 whitespace-nowrap">
-                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-amber-800 border border-amber-300">
-                                        مباح بشروط
-                                    </span>
-                                </td>
-                                <td class="py-3.5 px-4 text-slate-600 text-xs sm:text-sm">
-                                    عدم وجود مصدر أقل مفسدة + أخذ خلية واحدة في مرحلة 8 خلايا دون إتلاف البقية [8, 12, 13].
-                                </td>
+                            <tr class="data-item hover:bg-slate-50" data-category="shart" data-search="اللقائح الفائضة أطفال الأنابيب مباح بشروط">
+                                <td class="py-2.5 px-3 font-bold whitespace-nowrap">اللقائح الفائضة (أطفال الأنابيب)</td>
+                                <td class="py-2.5 px-3 whitespace-nowrap"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800">مباح بشروط</span></td>
+                                <td class="py-2.5 px-3 text-slate-600 text-[11px] sm:text-xs">عدم وجود مصدر أقل مفسدة + أخذ خلية واحدة في مرحلة 8 خلايا دون إتلاف البقية [8, 12, 13].</td>
                             </tr>
-
-                            <!-- Row 2 -->
-                            <tr class="table-row-item hover:bg-slate-50 transition" data-category="mubah" data-keywords="السقط التلقائي والإجهاض لعذر مباح">
-                                <td class="py-3.5 px-4 font-bold text-slate-900 whitespace-nowrap">السقط التلقائي والإجهاض لعذر</td>
-                                <td class="py-3.5 px-4 whitespace-nowrap">
-                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">
-                                        مباح
-                                    </span>
-                                </td>
-                                <td class="py-3.5 px-4 text-slate-600 text-xs sm:text-sm">
-                                    عدم تسبب الإجهاض لأجل الخلايا + إذن الوالدين [20, 24-26].
-                                </td>
+                            <tr class="data-item hover:bg-slate-50" data-category="mubah" data-search="السقط التلقائي والإجهاض لعذر مباح">
+                                <td class="py-2.5 px-3 font-bold whitespace-nowrap">السقط التلقائي والإجهاض لعذر</td>
+                                <td class="py-2.5 px-3 whitespace-nowrap"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">مباح</span></td>
+                                <td class="py-2.5 px-3 text-slate-600 text-[11px] sm:text-xs">عدم تسبب الإجهاض لأجل الخلايا + إذن الوالدين [20, 24-26].</td>
                             </tr>
-
-                            <!-- Row 3 -->
-                            <tr class="table-row-item hover:bg-slate-50 transition" data-category="haram" data-keywords="الإجهاض العمدي لغير عذر محظور مطلقا">
-                                <td class="py-3.5 px-4 font-bold text-slate-900 whitespace-nowrap">الإجهاض العمدي لغير عذر</td>
-                                <td class="py-3.5 px-4 whitespace-nowrap">
-                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-rose-100 text-rose-800 border border-rose-300">
-                                        محظور مطلقاً
-                                    </span>
-                                </td>
-                                <td class="py-3.5 px-4 text-slate-600 text-xs sm:text-sm">
-                                    لكونه قتلاً ومناقضاً لكرامة الجنين وسداً لذرائع المتاجرة [22, 23, 26].
-                                </td>
+                            <tr class="data-item hover:bg-slate-50" data-category="haram" data-search="الإجهاض العمدي لغير عذر محظور مطلقا">
+                                <td class="py-2.5 px-3 font-bold whitespace-nowrap">الإجهاض العمدي لغير عذر</td>
+                                <td class="py-2.5 px-3 whitespace-nowrap"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-rose-100 text-rose-800">محظور مطلقاً</span></td>
+                                <td class="py-2.5 px-3 text-slate-600 text-[11px] sm:text-xs">لكونه قتلاً ومناقضاً لكرامة الجنين وسداً لذرائع المتاجرة [22, 23, 26].</td>
                             </tr>
-
-                            <!-- Row 4 -->
-                            <tr class="table-row-item hover:bg-slate-50 transition" data-category="shart" data-keywords="الأجنة المشوهة خلقيا مباح قبل 120 يوما محظور بعده">
-                                <td class="py-3.5 px-4 font-bold text-slate-900 whitespace-nowrap">الأجنة المشوهة خلقياً</td>
-                                <td class="py-3.5 px-4 whitespace-nowrap">
-                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-amber-800 border border-amber-300">
-                                        مباح قبل 120 يوماً / محظور بعده
-                                    </span>
-                                </td>
-                                <td class="py-3.5 px-4 text-slate-600 text-xs sm:text-sm">
-                                    قبل 120 يوماً بشرط العذر المسوغ؛ وبعد 120 يوماً محرم كالمكلفين إلا لإنقاذ حياة الأم [24, 30, 31].
-                                </td>
+                            <tr class="data-item hover:bg-slate-50" data-category="shart" data-search="الأجنة المشوهة خلقيا مباح قبل 120 يوما محظور بعده">
+                                <td class="py-2.5 px-3 font-bold whitespace-nowrap">الأجنة المشوهة خلقياً</td>
+                                <td class="py-2.5 px-3 whitespace-nowrap"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800">مباح قبل 120 يوماً / محظور بعده</span></td>
+                                <td class="py-2.5 px-3 text-slate-600 text-[11px] sm:text-xs">قبل 120 يوماً بشرط العذر المسوغ؛ وبعد 120 يوماً محرم كالمكلفين إلا لإنقاذ حياة الأم [24, 30, 31].</td>
                             </tr>
-
-                            <!-- Row 5 -->
-                            <tr class="table-row-item hover:bg-slate-50 transition" data-category="haram" data-keywords="التلقيح العمدي بين أجنبيين محظور مطلقا">
-                                <td class="py-3.5 px-4 font-bold text-slate-900 whitespace-nowrap">التلقيح العمدي بين أجنبيين</td>
-                                <td class="py-3.5 px-4 whitespace-nowrap">
-                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-rose-100 text-rose-800 border border-rose-300">
-                                        محظور مطلقاً
-                                    </span>
-                                </td>
-                                <td class="py-3.5 px-4 text-slate-600 text-xs sm:text-sm">
-                                    درءاً لاختلاط الأنساب وبطلان التبرع بالنطاف البشرية [13, 32].
-                                </td>
+                            <tr class="data-item hover:bg-slate-50" data-category="haram" data-search="التلقيح العمدي بين أجنبيين محظور مطلقا">
+                                <td class="py-2.5 px-3 font-bold whitespace-nowrap">التلقيح العمدي بين أجنبيين</td>
+                                <td class="py-2.5 px-3 whitespace-nowrap"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-rose-100 text-rose-800">محظور مطلقاً</span></td>
+                                <td class="py-2.5 px-3 text-slate-600 text-[11px] sm:text-xs">درءاً لاختلاط الأنساب وبطلان التبرع بالنطاف البشرية [13, 32].</td>
                             </tr>
-
-                            <!-- Row 6 -->
-                            <tr class="table-row-item hover:bg-slate-50 transition" data-category="shart" data-keywords="التلقيح العمدي بين الزوجين للخلايا محظور كأصل مباح للضرورة">
-                                <td class="py-3.5 px-4 font-bold text-slate-900 whitespace-nowrap">التلقيح العمدي بين الزوجين للخلايا</td>
-                                <td class="py-3.5 px-4 whitespace-nowrap">
-                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-amber-800 border border-amber-300">
-                                        محظور كأصل / مباح للضرورة
-                                    </span>
-                                </td>
-                                <td class="py-3.5 px-4 text-slate-600 text-xs sm:text-sm">
-                                    تحريمه أصل لابتذال الجنين؛ وإباحته مشروطة بالتعين والضرورة القصوى وعدم البديل [34, 35].
-                                </td>
+                            <tr class="data-item hover:bg-slate-50" data-category="shart" data-search="التلقيح العمدي بين الزوجين للخلايا محظور كأصل مباح للضرورة">
+                                <td class="py-2.5 px-3 font-bold whitespace-nowrap">التلقيح العمدي بين الزوجين للخلايا</td>
+                                <td class="py-2.5 px-3 whitespace-nowrap"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800">محظور كأصل / مباح للضرورة</span></td>
+                                <td class="py-2.5 px-3 text-slate-600 text-[11px] sm:text-xs">تحريمه أصل لابتذال الجنين؛ وإباحته مشروطة بالتعين والضرورة القصوى وعدم البديل [34, 35].</td>
                             </tr>
-
-                            <!-- Row 7 -->
-                            <tr class="table-row-item hover:bg-slate-50 transition" data-category="haram" data-keywords="الاستنساخ العلاجي SCNT محظور مطلقا">
-                                <td class="py-3.5 px-4 font-bold text-slate-900 whitespace-nowrap">الاستنساخ العلاجي (SCNT)</td>
-                                <td class="py-3.5 px-4 whitespace-nowrap">
-                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-rose-100 text-rose-800 border border-rose-300">
-                                        محظور مطلقاً
-                                    </span>
-                                </td>
-                                <td class="py-3.5 px-4 text-slate-600 text-xs sm:text-sm">
-                                    لكونه إنشتاًء للجنين ثم تدميراً وقتلاً له مما ينافي الكرامة الإنسانية <span class="quran-verse font-bold">﴿وَلَقَدْ كَرَّمْنَا بَنِي آدَمَ﴾</span> [35, 39, 40].
-                                </td>
+                            <tr class="data-item hover:bg-slate-50" data-category="haram" data-search="الاستنساخ العلاجي SCNT محظور مطلقا">
+                                <td class="py-2.5 px-3 font-bold whitespace-nowrap">الاستنساخ العلاجي (SCNT)</td>
+                                <td class="py-2.5 px-3 whitespace-nowrap"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-rose-100 text-rose-800">محظور مطلقاً</span></td>
+                                <td class="py-2.5 px-3 text-slate-600 text-[11px] sm:text-xs">لكونه إنشتاًء للجنين ثم تدميراً وقتلاً له مما ينافي الكرامة الإنسانية ﴿وَلَقَدْ كَرَّمْنَا بَنِي آدَمَ﴾ [35, 39, 40].</td>
                             </tr>
-
-                            <!-- Row 8 -->
-                            <tr class="table-row-item hover:bg-slate-50 transition" data-category="mubah" data-keywords="دم الحبل السري والمشيمة مباح">
-                                <td class="py-3.5 px-4 font-bold text-slate-900 whitespace-nowrap">دم الحبل السري والمشيمة</td>
-                                <td class="py-3.5 px-4 whitespace-nowrap">
-                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">
-                                        مباح
-                                    </span>
-                                </td>
-                                <td class="py-3.5 px-4 text-slate-600 text-xs sm:text-sm">
-                                    التداوي المأذون فيه + عدم الضرر بالوليد والأم + إذن الوالدين [27, 46, 47].
-                                </td>
+                            <tr class="data-item hover:bg-slate-50" data-category="mubah" data-search="دم الحبل السري والمشيمة مباح">
+                                <td class="py-2.5 px-3 font-bold whitespace-nowrap">دم الحبل السري والمشيمة</td>
+                                <td class="py-2.5 px-3 whitespace-nowrap"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">مباح</span></td>
+                                <td class="py-2.5 px-3 text-slate-600 text-[11px] sm:text-xs">التداوي المأذون فيه + عدم الضرر بالوليد والأم + إذن الوالدين [27, 46, 47].</td>
                             </tr>
-
-                            <!-- Row 9 -->
-                            <tr class="table-row-item hover:bg-slate-50 transition" data-category="mubah" data-keywords="خلايا البالغين والأطفال لنفسهم مباح">
-                                <td class="py-3.5 px-4 font-bold text-slate-900 whitespace-nowrap">خلايا البالغين والأطفال لنفسهم</td>
-                                <td class="py-3.5 px-4 whitespace-nowrap">
-                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">
-                                        مباح
-                                    </span>
-                                </td>
-                                <td class="py-3.5 px-4 text-slate-600 text-xs sm:text-sm">
-                                    تدخل في باب التداوي المشروع بشرط الإذن وعدم الضرر [27, 53, 54].
-                                </td>
+                            <tr class="data-item hover:bg-slate-50" data-category="mubah" data-search="خلايا البالغين والأطفال لنفسهم مباح">
+                                <td class="py-2.5 px-3 font-bold whitespace-nowrap">خلايا البالغين والأطفال لنفسهم</td>
+                                <td class="py-2.5 px-3 whitespace-nowrap"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">مباح</span></td>
+                                <td class="py-2.5 px-3 text-slate-600 text-[11px] sm:text-xs">تدخل في باب التداوي المشروع بشرط الإذن وعدم الضرر [27, 53, 54].</td>
                             </tr>
-
-                            <!-- Row 10 -->
-                            <tr class="table-row-item hover:bg-slate-50 transition" data-category="haram" data-keywords="تبرع الطفل بخلاياه لغيره محظور باطل">
-                                <td class="py-3.5 px-4 font-bold text-slate-900 whitespace-nowrap">تبرع الطفل بخلاياه لغيره</td>
-                                <td class="py-3.5 px-4 whitespace-nowrap">
-                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-rose-100 text-rose-800 border border-rose-300">
-                                        محظور باطل
-                                    </span>
-                                </td>
-                                <td class="py-3.5 px-4 text-slate-600 text-xs sm:text-sm">
-                                    لأن «تصرف الولي منوط بالمصلحة المحضة» والتبرع للغير ضرر محض بالطفل [55, 56, 58, 59].
-                                </td>
+                            <tr class="data-item hover:bg-slate-50" data-category="haram" data-search="تبرع الطفل بخلاياه لغيره محظور باطل">
+                                <td class="py-2.5 px-3 font-bold whitespace-nowrap">تبرع الطفل بخلاياه لغيره</td>
+                                <td class="py-2.5 px-3 whitespace-nowrap"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-rose-100 text-rose-800">محظور باطل</span></td>
+                                <td class="py-2.5 px-3 text-slate-600 text-[11px] sm:text-xs">لأن «تصرف الولي منوط بالمصلحة المحضة» والتبرع للغير ضرر محض بالطفل [55, 56, 58, 59].</td>
                             </tr>
-
-                            <!-- Row 11 -->
-                            <tr class="table-row-item hover:bg-slate-50 transition" data-category="mubah" data-keywords="خلايا لبن الأمهات عبر الفم مباح وتثبت به المحرمية">
-                                <td class="py-3.5 px-4 font-bold text-slate-900 whitespace-nowrap">خلايا لبن الأمهات (عبر الفم)</td>
-                                <td class="py-3.5 px-4 whitespace-nowrap">
-                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">
-                                        مباح وتثبت به المحرمية
-                                    </span>
-                                </td>
-                                <td class="py-3.5 px-4 text-slate-600 text-xs sm:text-sm">
-                                    تخرّج على مسألة الوجور في الحولين وتثبت بها حرمة الرضاع والمحرمية [56, 61, 64, 65].
-                                </td>
+                            <tr class="data-item hover:bg-slate-50" data-category="mubah" data-search="خلايا لبن الأمهات عبر الفم مباح وتثبت به المحرمية">
+                                <td class="py-2.5 px-3 font-bold whitespace-nowrap">خلايا لبن الأمهات (عبر الفم)</td>
+                                <td class="py-2.5 px-3 whitespace-nowrap"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">مباح وتثبت به المحرمية</span></td>
+                                <td class="py-2.5 px-3 text-slate-600 text-[11px] sm:text-xs">تخرّج على مسألة الوجور في الحولين وتثبت بها حرمة الرضاع والمحرمية [56, 61, 64, 65].</td>
                             </tr>
-
-                            <!-- Row 12 -->
-                            <tr class="table-row-item hover:bg-slate-50 transition" data-category="shart" data-keywords="الخلايا الجذعية الحيوانية مباح بشروط">
-                                <td class="py-3.5 px-4 font-bold text-slate-900 whitespace-nowrap">الخلايا الجذعية الحيوانية</td>
-                                <td class="py-3.5 px-4 whitespace-nowrap">
-                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-amber-800 border border-amber-300">
-                                        مباح بشروط
-                                    </span>
-                                </td>
-                                <td class="py-3.5 px-4 text-slate-600 text-xs sm:text-sm">
-                                    أن يكون الحيوان طاهراً ومأكول اللحم، أو للضرورة القصوى مع الأمان الطبي [70, 71].
-                                </td>
+                            <tr class="data-item hover:bg-slate-50" data-category="shart" data-search="الخلايا الجذعية الحيوانية مباح بشروط">
+                                <td class="py-2.5 px-3 font-bold whitespace-nowrap">الخلايا الجذعية الحيوانية</td>
+                                <td class="py-2.5 px-3 whitespace-nowrap"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800">مباح بشروط</span></td>
+                                <td class="py-2.5 px-3 text-slate-600 text-[11px] sm:text-xs">أن يكون الحيوان طاهراً ومأكول اللحم، أو للضرورة القصوى مع الأمان الطبي [70, 71].</td>
                             </tr>
-
-                            <!-- Row 13 -->
-                            <tr class="table-row-item hover:bg-slate-50 transition" data-category="shart" data-keywords="بيع وشراء الخلايا الجذعية محظور معاوضة مباح كخدمات">
-                                <td class="py-3.5 px-4 font-bold text-slate-900 whitespace-nowrap">بيع وشراء الخلايا الجذعية</td>
-                                <td class="py-3.5 px-4 whitespace-nowrap">
-                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-amber-800 border border-amber-300">
-                                        محظور معاوضة / مباح كخدمات
-                                    </span>
-                                </td>
-                                <td class="py-3.5 px-4 text-slate-600 text-xs sm:text-sm">
-                                    الخلية ليست مالاً متقوماً للبيع؛ ويجوز التبرع أو المكافأة أو مقابل مصاريف الحفظ والاستخراج [73-75, 77].
-                                </td>
+                            <tr class="data-item hover:bg-slate-50" data-category="shart" data-search="بيع وشراء الخلايا الجذعية محظور معاوضة مباح كخدمات">
+                                <td class="py-2.5 px-3 font-bold whitespace-nowrap">بيع وشراء الخلايا الجذعية</td>
+                                <td class="py-2.5 px-3 whitespace-nowrap"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800">محظور معاوضة / مباح كخدمات</span></td>
+                                <td class="py-2.5 px-3 text-slate-600 text-[11px] sm:text-xs">الخلية ليست مالاً متقوماً للبيع؛ ويجوز التبرع أو المكافأة أو مقابل مصاريف الحفظ والاستخراج [73-75, 77].</td>
                             </tr>
-
-                            <!-- Row 14 -->
-                            <tr class="table-row-item hover:bg-slate-50 transition" data-category="shart" data-keywords="عقد التبرع وحق الرجوع جائز قبل القبض لازم بعده">
-                                <td class="py-3.5 px-4 font-bold text-slate-900 whitespace-nowrap">عقد التبرع وحق الرجوع</td>
-                                <td class="py-3.5 px-4 whitespace-nowrap">
-                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-amber-800 border border-amber-300">
-                                        جائز قبل القبض / لازم بعده
-                                    </span>
-                                </td>
-                                <td class="py-3.5 px-4 text-slate-600 text-xs sm:text-sm">
-                                    يُكيّف كهبة وتبرع؛ يحق الرجوع قبل الاستخراج، ويلزم بدفعها وتسليمها للبنك [78-80].
-                                </td>
+                            <tr class="data-item hover:bg-slate-50" data-category="shart" data-search="عقد التبرع وحق الرجوع جائز قبل القبض لازم بعده">
+                                <td class="py-2.5 px-3 font-bold whitespace-nowrap">عقد التبرع وحق الرجوع</td>
+                                <td class="py-2.5 px-3 whitespace-nowrap"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800">جائز قبل القبض / لازم بعده</span></td>
+                                <td class="py-2.5 px-3 text-slate-600 text-[11px] sm:text-xs">يُكيّف كهبة وتبرع؛ يحق الرجوع قبل الاستخراج، ويلزم بدفعها وتسليمها للبنك [78-80].</td>
                             </tr>
-
-                            <!-- Row 15 -->
-                            <tr class="table-row-item hover:bg-slate-50 transition" data-category="mubah" data-keywords="ضمان المتبرع للعيب الخفي لا ضمان إلا مع التدليس">
-                                <td class="py-3.5 px-4 font-bold text-slate-900 whitespace-nowrap">ضمان المتبرع للعيب الخفي</td>
-                                <td class="py-3.5 px-4 whitespace-nowrap">
-                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">
-                                        لا ضمان إلا مع التدليس
-                                    </span>
-                                </td>
-                                <td class="py-3.5 px-4 text-slate-600 text-xs sm:text-sm">
-                                    «المتبرع محسن وما على المحسنين من سبيل»، إلا إذا تعمد الغش والكتمان [78, 80].
-                                </td>
+                            <tr class="data-item hover:bg-slate-50" data-category="mubah" data-search="ضمان المتبرع للعيب الخفي لا ضمان إلا مع التدليس">
+                                <td class="py-2.5 px-3 font-bold whitespace-nowrap">ضمان المتبرع للعيب الخفي</td>
+                                <td class="py-2.5 px-3 whitespace-nowrap"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">لا ضمان إلا مع التدليس</span></td>
+                                <td class="py-2.5 px-3 text-slate-600 text-[11px] sm:text-xs">«المتبرع محسن وما على المحسنين من سبيل»، إلا إذا تعمد الغش والكتمان [78, 80].</td>
                             </tr>
-
-                            <!-- Row 16 -->
-                            <tr class="table-row-item hover:bg-slate-50 transition" data-category="mubah" data-keywords="تبرع السجين المحبوس مباح">
-                                <td class="py-3.5 px-4 font-bold text-slate-900 whitespace-nowrap">تبرع السجين المحبوس</td>
-                                <td class="py-3.5 px-4 whitespace-nowrap">
-                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">
-                                        مباح
-                                    </span>
-                                </td>
-                                <td class="py-3.5 px-4 text-slate-600 text-xs sm:text-sm">
-                                    سلب الحرية لا يسقط الأهلية؛ والشرط هو صدور التبرع عن رضا واختيار حر [78, 81, 82].
-                                </td>
+                            <tr class="data-item hover:bg-slate-50" data-category="mubah" data-search="تبرع السجين المحبوس مباح">
+                                <td class="py-2.5 px-3 font-bold whitespace-nowrap">تبرع السجين المحبوس</td>
+                                <td class="py-2.5 px-3 whitespace-nowrap"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">مباح</span></td>
+                                <td class="py-2.5 px-3 text-slate-600 text-[11px] sm:text-xs">سلب الحرية لا يسقط الأهلية؛ والشرط هو صدور التبرع عن رضا واختيار حر [78, 81, 82].</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
 
-                <!-- No results notification -->
-                <div id="noResultsMsg" class="hidden text-center py-10 text-slate-400">
-                    <svg class="w-10 h-10 mx-auto mb-2 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    لا توجد نتائج مطابقة لبحثك أو تصفيتك الحالية.
+                <!-- رسالة عند عدم وجود نتائج بحث -->
+                <div id="noMatchMsg" class="hidden text-center py-8 text-slate-400">
+                    <p class="text-xs">لا توجد نتائج مطابقة لبحثك في هذا القسم.</p>
                 </div>
             </div>
         </section>
 
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-slate-900 text-slate-400 text-xs py-8 border-t border-slate-800 mt-12 no-print">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div>
-                <span class="font-bold text-slate-200">ورقة خلاصة علمية شاملة ومركزة</span> — استخلاص مسائل الخلايا الجذعية في الفقه الإسلامي المقارن.
-            </div>
-            <div class="text-slate-500">
-                مبنية بأمانة علمية كاملة على الأبحاث المحكمة المرفوعة [1-82]
-            </div>
+    <!-- شريط التنقل السفلي الثابت المخصص للجوال (Sticky Mobile Bottom Bar) -->
+    <nav class="fixed bottom-0 inset-x-0 bg-white/95 backdrop-blur border-t border-slate-200 py-1.5 px-2 z-40 sm:hidden no-print shadow-[0_-4px_10px_rgba(0,0,0,0.05)]">
+        <div class="grid grid-cols-4 gap-1 text-center">
+            <button onclick="switchTab('tab-intro')" id="btn-bottom-tab-intro" class="bottom-nav-btn py-1 px-1 rounded-xl text-emerald-800 flex flex-col items-center">
+                <span class="text-base leading-none">🧬</span>
+                <span class="text-[10px] font-bold mt-1">التصوير</span>
+            </button>
+            <button onclick="switchTab('tab-sources')" id="btn-bottom-tab-sources" class="bottom-nav-btn py-1 px-1 rounded-xl text-slate-500 flex flex-col items-center">
+                <span class="text-base leading-none">🌿</span>
+                <span class="text-[10px] font-medium mt-1">المصادر (9)</span>
+            </button>
+            <button onclick="switchTab('tab-transactions')" id="btn-bottom-tab-transactions" class="bottom-nav-btn py-1 px-1 rounded-xl text-slate-500 flex flex-col items-center">
+                <span class="text-base leading-none">🏛️</span>
+                <span class="text-[10px] font-medium mt-1">البنوك (4)</span>
+            </button>
+            <button onclick="switchTab('tab-summary')" id="btn-bottom-tab-summary" class="bottom-nav-btn py-1 px-1 rounded-xl text-slate-500 flex flex-col items-center">
+                <span class="text-base leading-none">📊</span>
+                <span class="text-[10px] font-medium mt-1">النتائج (16)</span>
+            </button>
         </div>
-    </footer>
+    </nav>
 
-    <!-- Interactive Script -->
+    <!-- سكربت التحكم والتفاعل للجوال -->
     <script>
-        // Tab switching logic
+        // التبديل بين التبويبات مع المزامنة بين الشريطين العلوي والسفلي
         function switchTab(tabId) {
+            // إخفاء كافة المحتويات
             const contents = document.querySelectorAll('.tab-content');
             contents.forEach(content => content.classList.add('hidden'));
 
-            const buttons = document.querySelectorAll('.tab-btn');
-            buttons.forEach(btn => {
-                btn.classList.remove('bg-emerald-700', 'text-white', 'shadow');
-                btn.classList.add('text-emerald-200');
+            // إظهار التبويب المطلوب
+            const activeContent = document.getElementById(tabId);
+            if (activeContent) {
+                activeContent.classList.remove('hidden');
+            }
+
+            // تحديث الشريط العلوي
+            const topBtns = document.querySelectorAll('.top-nav-btn');
+            topBtns.forEach(btn => {
+                btn.className = 'top-nav-btn px-3.5 py-1.5 rounded-full text-xs font-medium text-emerald-200 hover:text-white hover:bg-emerald-900/80 transition flex items-center';
             });
-
-            const targetContent = document.getElementById(tabId);
-            if (targetContent) {
-                targetContent.classList.remove('hidden');
+            const activeTopBtn = document.getElementById('btn-top-' + tabId);
+            if (activeTopBtn) {
+                activeTopBtn.className = 'top-nav-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition flex items-center bg-emerald-600 text-white shadow';
+                activeTopBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
             }
 
-            const activeBtn = document.getElementById('btn-' + tabId);
-            if (activeBtn) {
-                activeBtn.classList.add('bg-emerald-700', 'text-white', 'shadow');
-                activeBtn.classList.remove('text-emerald-200');
+            // تحديث الشريط السفلي للجوال
+            const bottomBtns = document.querySelectorAll('.bottom-nav-btn');
+            bottomBtns.forEach(btn => {
+                btn.className = 'bottom-nav-btn py-1 px-1 rounded-xl text-slate-500 flex flex-col items-center';
+                const label = btn.querySelector('span:last-child');
+                if (label) label.classList.replace('font-bold', 'font-medium');
+            });
+            const activeBottomBtn = document.getElementById('btn-bottom-' + tabId);
+            if (activeBottomBtn) {
+                activeBottomBtn.className = 'bottom-nav-btn py-1 px-1 rounded-xl text-emerald-800 bg-emerald-50 flex flex-col items-center';
+                const label = activeBottomBtn.querySelector('span:last-child');
+                if (label) label.classList.replace('font-medium', 'font-bold');
             }
-        }
 
-        // Live Search and Filtering Logic
-        let currentFilter = 'all';
-
-        function setFilter(filterType) {
-            currentFilter = filterType;
+            // التمرير اللطيف لأعلى المحتوى عند التبديل
+            window.scrollTo({ top: 0, behavior: 'smooth' });
             
-            const filterBtns = document.querySelectorAll('.filter-btn');
-            filterBtns.forEach(btn => {
-                if (btn.getAttribute('data-filter') === filterType) {
-                    btn.className = 'filter-btn px-3 py-1.5 rounded-lg bg-slate-800 text-white font-medium transition';
-                } else {
-                    const f = btn.getAttribute('data-filter');
-                    if (f === 'all') btn.className = 'filter-btn px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200 font-medium transition';
-                    if (f === 'mubah') btn.className = 'filter-btn px-3 py-1.5 rounded-lg bg-emerald-100 text-emerald-800 hover:bg-emerald-200 font-medium transition border border-emerald-300';
-                    if (f === 'shart') btn.className = 'filter-btn px-3 py-1.5 rounded-lg bg-amber-100 text-amber-800 hover:bg-amber-200 font-medium transition border border-amber-300';
-                    if (f === 'haram') btn.className = 'filter-btn px-3 py-1.5 rounded-lg bg-rose-100 text-rose-800 hover:bg-rose-200 font-medium transition border border-rose-300';
-                }
-            });
-
-            filterContent();
+            // إعادة تطبيق البحث الحالي إن وجد
+            filterAll();
         }
 
-        function filterContent() {
-            const query = document.getElementById('liveSearchInput').value.trim().toLowerCase();
-            let hasVisibleResults = false;
+        // تبديل عرض الجدول في قسم النتائج بين كروت الجوال والجدول الكامل
+        function toggleSummaryLayout(layout) {
+            const cards = document.getElementById('summaryCardsContainer');
+            const table = document.getElementById('summaryTableContainer');
+            const btnCards = document.getElementById('btnLayoutCards');
+            const btnTable = document.getElementById('btnLayoutTable');
 
-            // Filter Article Cards
-            const cards = document.querySelectorAll('.issue-card');
-            cards.forEach(card => {
-                const category = card.getAttribute('data-category');
-                const keywords = (card.getAttribute('data-keywords') + ' ' + card.innerText).toLowerCase();
-                
-                const matchesFilter = (currentFilter === 'all') || (category === currentFilter);
-                const matchesSearch = query === '' || keywords.includes(query);
+            if (layout === 'cards') {
+                cards.classList.remove('hidden');
+                table.classList.add('hidden');
+                btnCards.className = 'px-2.5 py-1 rounded-lg font-bold bg-white text-emerald-800 shadow-sm transition';
+                btnTable.className = 'px-2.5 py-1 rounded-lg text-slate-600 hover:text-slate-900 transition';
+            } else {
+                cards.classList.add('hidden');
+                table.classList.remove('hidden');
+                btnTable.className = 'px-2.5 py-1 rounded-lg font-bold bg-white text-emerald-800 shadow-sm transition';
+                btnCards.className = 'px-2.5 py-1 rounded-lg text-slate-600 hover:text-slate-900 transition';
+            }
+            filterAll();
+        }
 
-                if (matchesFilter && matchesSearch) {
-                    card.classList.remove('hidden');
-                    hasVisibleResults = true;
+        // نظام الفلترة السريعة للأحكام
+        let activeFilterType = 'all';
+        function setFilter(type) {
+            activeFilterType = type;
+            const badges = document.querySelectorAll('.filter-badge');
+            badges.forEach(b => {
+                if (b.getAttribute('data-filter') === type) {
+                    b.className = 'filter-badge active px-3 py-1.5 rounded-lg font-bold bg-slate-800 text-white whitespace-nowrap shadow-sm';
                 } else {
-                    card.classList.add('hidden');
+                    const f = b.getAttribute('data-filter');
+                    if (f === 'all') b.className = 'filter-badge px-3 py-1.5 rounded-lg font-medium bg-slate-100 text-slate-700 whitespace-nowrap';
+                    if (f === 'mubah') b.className = 'filter-badge px-3 py-1.5 rounded-lg font-medium bg-emerald-50 text-emerald-800 border border-emerald-200 whitespace-nowrap';
+                    if (f === 'shart') b.className = 'filter-badge px-3 py-1.5 rounded-lg font-medium bg-amber-50 text-amber-800 border border-amber-200 whitespace-nowrap';
+                    if (f === 'haram') b.className = 'filter-badge px-3 py-1.5 rounded-lg font-medium bg-rose-50 text-rose-800 border border-rose-200 whitespace-nowrap';
+                }
+            });
+            filterAll();
+        }
+
+        // البحث الفوري عبر الجوال
+        function filterAll() {
+            const query = document.getElementById('searchInput').value.trim().toLowerCase();
+            const clearBtn = document.getElementById('clearBtn');
+            if (clearBtn) {
+                if (query.length > 0) clearBtn.classList.remove('hidden');
+                else clearBtn.classList.add('hidden');
+            }
+
+            const items = document.querySelectorAll('.data-item');
+            let visibleCount = 0;
+
+            items.forEach(item => {
+                const category = item.getAttribute('data-category') || '';
+                const searchStr = ((item.getAttribute('data-search') || '') + ' ' + item.innerText).toLowerCase();
+
+                const matchesFilter = (activeFilterType === 'all') || (category === activeFilterType);
+                const matchesQuery = (query === '') || searchStr.includes(query);
+
+                if (matchesFilter && matchesQuery) {
+                    item.classList.remove('hidden');
+                    visibleCount++;
+                } else {
+                    item.classList.add('hidden');
                 }
             });
 
-            // Filter Table Rows
-            const rows = document.querySelectorAll('.table-row-item');
-            rows.forEach(row => {
-                const category = row.getAttribute('data-category');
-                const keywords = (row.getAttribute('data-keywords') + ' ' + row.innerText).toLowerCase();
-
-                const matchesFilter = (currentFilter === 'all') || (category === currentFilter);
-                const matchesSearch = query === '' || keywords.includes(query);
-
-                if (matchesFilter && matchesSearch) {
-                    row.classList.remove('hidden');
-                    hasVisibleResults = true;
+            const noMatch = document.getElementById('noMatchMsg');
+            if (noMatch) {
+                if (visibleCount === 0 && (query !== '' || activeFilterType !== 'all')) {
+                    noMatch.classList.remove('hidden');
                 } else {
-                    row.classList.add('hidden');
-                }
-            });
-
-            // Handle No Results Message
-            const noRes = document.getElementById('noResultsMsg');
-            if (noRes) {
-                if (!hasVisibleResults && (query !== '' || currentFilter !== 'all')) {
-                    noRes.classList.remove('hidden');
-                } else {
-                    noRes.classList.add('hidden');
+                    noMatch.classList.add('hidden');
                 }
             }
         }
 
-        // Font Size Adjuster
-        let currentScale = 1;
-        function changeFontSize(direction) {
-            if (direction === 1 && currentScale < 1.25) {
-                currentScale += 0.05;
-            } else if (direction === -1 && currentScale > 0.85) {
-                currentScale -= 0.05;
+        function clearSearch() {
+            const input = document.getElementById('searchInput');
+            input.value = '';
+            filterAll();
+            input.focus();
+        }
+
+        // تكبير وتصغير الخط للقراءة المريحة على الجوال
+        let fontScale = 1.0;
+        function changeFontSize(step) {
+            if (step === 1 && fontScale < 1.3) {
+                fontScale += 0.05;
+            } else if (step === -1 && fontScale > 0.85) {
+                fontScale -= 0.05;
             }
-            document.getElementById('contentContainer').style.fontSize = `${currentScale}rem`;
+            document.getElementById('mainDynamicArea').style.fontSize = fontScale + 'rem';
         }
     </script>
 </body>
